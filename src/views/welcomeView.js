@@ -13,4 +13,5 @@ export const createWelcomeElement = () => {
     <button id="${START_QUIZ_BUTTON_ID}">start quiz</button>
   `;
   return element;
+  /*Demo*/
 };
