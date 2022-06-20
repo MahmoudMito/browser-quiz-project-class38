@@ -10,7 +10,7 @@
     not by your logic
     not by your listeners
 */
-
+export let userScore = 0;
 export const quizData = {
   currentQuestionIndex: 0,
   // the questions in the quiz

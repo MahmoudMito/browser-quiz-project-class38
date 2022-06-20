@@ -4,6 +4,9 @@
   --stack-font-size: 18px;
   --primary-color: rgb(0, 44, 44);
   --accent-color: rgb(0, 0, 0);
+  --top-margin-li: 1.5em;
+  --right-margin-li: 1.5em;
+  --centered-top: 25%;
 }
 
 html {
@@ -21,6 +24,9 @@ html {
     --grid-size: 3px;
     --button-border-size: 2px;
     --stack-font-size: 14px;
+    --top-margin-li: 1.3em;
+    --right-margin-li: 2em;
+    --centered-top: 25%;
   }
 }
 @media (max-height: 390px) {
@@ -28,6 +34,14 @@ html {
     --grid-size: 3px;
     --button-border-size: 2px;
     --stack-font-size: 14px;
+    --top-margin-li: 1.3em;
+    --right-margin-li: 2em;
+    --centered-top: 0%;
+  }
+}
+@media (max-height: 720px) {
+  * {
+    --centered-top: 5%;
   }
 }
 @keyframes fadeIn-effect-anime {
@@ -61,7 +75,7 @@ button {
   padding-left: 2em;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
-  font-size: calc(var(--stack-font-size) * 1.15);
+  font-size: calc(var(--stack-font-size) * 1.23);
 }
 
 button:hover {
@@ -78,23 +92,23 @@ body {
   z-index: 20;
   position: fixed;
   height: calc(clamp(390px, 100%, 100vh) * 0.7);
-  width: clamp(390px, 100%, 100vw);
+  width: calc(clamp(390px, 100%, 100vw) * 0.98);
   margin: 0;
   left: 0%;
-  top: 10%;
+  transform: translateY(var(--centered-top));
   text-align: center;
   color: rgba(0, 244, 77, 0.705);
   animation: fadeIn-effect-anime 1s 1;
+}
+
+#next-question-button {
+  margin-top: 1.7em;
 }
 
 .scrollable {
   height: auto;
   max-height: 80vh;
   overflow: auto;
-}
-
-ul {
-  list-style: none;
 }
 
 #background {
@@ -170,12 +184,102 @@ span[id^=background-span-matrix-] {
   filter: saturate(5);
 }
 
-h6 {
-  font-size: calc(var(--stack-font-size) * 3);
-  filter: drop-shadow(0.1em 0.2em 0.3em rgb(9, 255, 0));
+h1 {
   animation: matrix-anime 3s infinite;
   animation-direction: alternate;
   animation-timing-function: ease-in-out;
+  font-size: calc(var(--stack-font-size) * 1.7);
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+li {
+  margin-top: var(--top-margin-li);
+  margin-right: var(--right-margin-li);
+  width: calc(clamp(390px, 100%, 100vw) * 0.9);
+  font-size: calc(var(--stack-font-size) * 1.37);
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background-color: rgba(8, 97, 26, 0.169);
+  color: rgba(0, 244, 77, 0.705);
+  border: var(--button-border-size) solid rgba(3, 81, 29, 0.08);
+}
+
+li:hover {
+  filter: drop-shadow(0.1em 0.2em 0.7em rgb(9, 255, 0));
+  animation: fadeIn-effect-anime 0.79s 1;
+  background-color: rgba(3, 30, 9, 0.237);
+}
+
+h6 {
+  animation: matrix-anime 3s infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  font-size: calc(var(--stack-font-size) * 3);
+  filter: drop-shadow(0.1em 0.2em 0.3em rgb(9, 255, 0));
+}
+
+@keyframes correct-answer-effect-anime {
+  33% {
+    transform: scale(1.1);
+    color: rgba(255, 255, 255, 0.711);
+    filter: drop-shadow(0.1em 0.2em 1em rgb(9, 255, 0));
+  }
+  66% {
+    transform: scale(1.15);
+    background-color: rgb(0, 255, 0);
+  }
+  77% {
+    transform: scale(1.19);
+    background-color: rgb(0, 255, 0);
+    color: rgba(255, 255, 255, 0.711);
+  }
+  100% {
+    transform: scale(1);
+    background-color: rgb(0, 255, 0);
+  }
+}
+@keyframes wrong-answer-effect-anime {
+  33% {
+    transform: scale(1.1);
+    filter: drop-shadow(0.1em 0.2em 1em rgb(9, 255, 0));
+    color: rgba(255, 255, 255, 0.711);
+  }
+  66% {
+    transform: scale(1.15);
+    background-color: rgb(255, 0, 0);
+  }
+  77% {
+    transform: scale(1.19);
+    background-color: rgb(255, 0, 0);
+    color: rgba(255, 255, 255, 0.711);
+  }
+  100% {
+    transform: scale(1);
+    background-color: rgb(255, 0, 0);
+  }
+}
+@keyframes correct-answer-indication {
+  33% {
+    background-color: rgb(0, 255, 0);
+    border: var(--button-border-size) solid rgba(3, 81, 29, 0.08);
+    color: rgba(255, 255, 255, 0.711);
+  }
+  66% {
+    background-color: rgb(2, 31, 37);
+  }
+  77% {
+    background-color: rgb(0, 255, 0);
+    color: rgba(255, 255, 255, 0.711);
+  }
+  100% {
+    background-color: rgb(2, 31, 37);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

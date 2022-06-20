@@ -8,6 +8,7 @@ import {
 import { createQuestionElement } from '../views/questionView.js';
 import { createAnswerElement } from '../views/answerView.js';
 import { quizData } from '../data.js';
+import {checkCorrectAnswer} from '../pages/answers.js';
 
 export const initQuestionPage = () => {
   const userInterface = document.getElementById(USER_INTERFACE_ID);
@@ -23,16 +24,21 @@ export const initQuestionPage = () => {
 
   for (const [key, answerText] of Object.entries(currentQuestion.answers)) {
     const answerElement = createAnswerElement(key, answerText);
+    answerElement.addEventListener('click', ()=>{
+      nextQuestion(key, answerElement)
+    });
     answersListElement.appendChild(answerElement);
   }
-
   document
     .getElementById(NEXT_QUESTION_BUTTON_ID)
-    .addEventListener('click', nextQuestion);
+    .addEventListener('click', ()=>{
+    nextQuestion()
+  });
 };
 
-const nextQuestion = () => {
+const nextQuestion = (selectedAnswer = null,selectedAnswerElement = null) => {
+  quizData.questions[quizData.currentQuestionIndex].selected = selectedAnswer;
+  checkCorrectAnswer(selectedAnswerElement,initQuestionPage)
   quizData.currentQuestionIndex += 1;
-
-  initQuestionPage();
 };
+

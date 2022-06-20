@@ -19,6 +19,9 @@ export const BACKGROUND_SPAN_MATRIX_ID_OFFSET = 'background-span-matrix-';
 export const UPDATE_MATRIX_INTERVAL_TIME = 100;
 export const STACK_FONT_SIZE_CSS_VAR = '--stack-font-size';
 export const ACTIVE_BUTTON_ANIMATION = 'active-effect-anime';
+export const CORRECT_ANSWER_LIST_ANIMATION = 'correct-answer-effect-anime';
+export const CORRECT_ANSWER_LIST_INDICATION = 'correct-answer-indication';
+export const WRONG_ANSWER_LIST_ANIMATION = 'wrong-answer-effect-anime';
 export const PRIMARY_COLOR_CSS_VAR = '--primary-color';
 export const ACCENT_COLOR_CSS_VAR = '--accent-color';
 
