@@ -10,7 +10,7 @@
 export const USER_INTERFACE_ID = 'user-interface';
 export const START_QUIZ_BUTTON_ID = 'start-quiz-button';
 export const ANSWERS_LIST_ID = 'answers-list';
-export const NEXT_QUESTION_BUTTON_ID = 'next-question-button';
+export const GIVEUP_QUESTION_BUTTON_ID = 'giveup-question-button';
 export const BACKGROUND_ID = 'background';
 export const BACKGROUND_OVERLAY_ID = 'background-overlay';
 export const BACKGROUND_UNDERLAY_ID = 'background-underlay';
@@ -24,6 +24,13 @@ export const CORRECT_ANSWER_LIST_INDICATION = 'correct-answer-indication';
 export const WRONG_ANSWER_LIST_ANIMATION = 'wrong-answer-effect-anime';
 export const PRIMARY_COLOR_CSS_VAR = '--primary-color';
 export const ACCENT_COLOR_CSS_VAR = '--accent-color';
+export const EXPLANATION_BUTTON_ID = 'explanation-question-button';
+export const NEXT_QUESTION_BUTTON_ID = 'next-question-button';
+export const QUESTION_CONTAINER_ID = 'question-container';
+export const RESULT_CONTAINER_ID = 'result-container';
+export const SCROLLABLE_CLASS = 'scrollable';
+export const RESULT_CORRECT_ANSWER = 'result-correct-answer';
+export const RESULT_WRONG_ANSWER = 'result-wrong-answer';
 
 export const ALPHANUMERIC_MATRIX = {
     LETTERS_UPPERCASE : ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
