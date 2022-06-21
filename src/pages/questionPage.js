@@ -43,8 +43,7 @@ export const initQuestionPage = () => {
   });
   setNextButton(false);
 
-  document.getElementsByTagName('title')[0].textContent = 
-  `The Frontiers Q${quizData.currentQuestionIndex+1}`;
+  
 
 
 };

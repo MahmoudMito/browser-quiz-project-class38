@@ -31,7 +31,7 @@ export const RESULT_CONTAINER_ID = 'result-container';
 export const SCROLLABLE_CLASS = 'scrollable';
 export const RESULT_CORRECT_ANSWER = 'result-correct-answer';
 export const RESULT_WRONG_ANSWER = 'result-wrong-answer';
-
+export const SCORE_ID = 'score';
 export const ALPHANUMERIC_MATRIX = {
     LETTERS_UPPERCASE : ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
     LETTERS_LOWERCASE : ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'],
