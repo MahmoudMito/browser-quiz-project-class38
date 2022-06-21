@@ -18,4 +18,5 @@ export const initWelcomePage = () => {
 
 const startQuiz = () => {
   initQuestionPage();
+  //document.title='Frontiers '+ 'Question-1'; //Setting document.title initial for question 1
 };

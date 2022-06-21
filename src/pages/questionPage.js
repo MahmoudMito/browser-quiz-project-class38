@@ -26,13 +26,27 @@ export const initQuestionPage = () => {
     answersListElement.appendChild(answerElement);
   }
 
+
+
   document
     .getElementById(NEXT_QUESTION_BUTTON_ID)
     .addEventListener('click', nextQuestion);
+
+
+    document.getElementsByTagName('title')[0].textContent = 
+    `The Frontiers Q${quizData.currentQuestionIndex+1}`;
+
+
 };
+
+
+
 
 const nextQuestion = () => {
   quizData.currentQuestionIndex = quizData.currentQuestionIndex + 1;
 
   initQuestionPage();
 };
+
+
+
