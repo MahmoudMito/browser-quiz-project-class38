@@ -13,7 +13,9 @@ import {checkCorrectAnswer} from '../pages/answers.js';
 import {initResultPage} from './resultPage.js';
 import {setNextButton} from './button.js';
 
+let answersEventListeners = [];
 export const initQuestionPage = () => {
+  answersEventListeners = [];
   if (quizData.currentQuestionIndex> quizData.questions.length -1){
     initResultPage();
     return;
@@ -31,9 +33,10 @@ export const initQuestionPage = () => {
 
   for (const [key, answerText] of Object.entries(currentQuestion.answers)) {
     const answerElement = createAnswerElement(key, answerText);
-    answerElement.addEventListener('click', ()=>{
+    answersEventListeners.push(()=>{
       nextQuestion(key, answerElement)
     });
+    answerElement.addEventListener('click', answersEventListeners.slice(-1)[0],true);
     answersListElement.appendChild(answerElement);
   }
   document
@@ -43,13 +46,17 @@ export const initQuestionPage = () => {
   });
   setNextButton(false);
 
-  
-
-
 };
 
 const nextQuestion = (selectedAnswer = null,selectedAnswerElement = null) => {
   quizData.questions[quizData.currentQuestionIndex].selected = selectedAnswer;
+  if (selectedAnswerElement){
+    let index =0;
+    for(const answer of document.getElementById(ANSWERS_LIST_ID).children){
+      answer.removeEventListener('click',answersEventListeners[index],true);
+      index++;
+    }
+  }
   checkCorrectAnswer(selectedAnswerElement,()=>{
     setNextButton(true);
   });

@@ -11,7 +11,7 @@ $button-color-background: rgba(8, 97, 26, 0.169);
 $button-color-background-hover: rgba(3, 30, 9, 0.237);
 $background-overlay-opacity: .51;
 $correct-answer-color: rgb(0, 255, 0);
-$wrong-answer-color: rgb(255, 0, 0);
+$wrong-answer-color: rgba(255, 0, 0, 0.78);
 :root{
   --grid-size : 5px;
   --button-border-size: 5px;
@@ -22,6 +22,8 @@ $wrong-answer-color: rgb(255, 0, 0);
   --right-margin-li: 1.5em;
   --centered-top: 25%;
   --button-padding-size: 2em;
+  --wrong-answer-color: rgba(255, 0, 0, 0.455);
+  --correct-answer-color: rgba(0, 255, 0, 0.473);
 }
 html {
   scroll-behavior: smooth;

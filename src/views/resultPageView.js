@@ -7,11 +7,7 @@ import { RESULT_CONTAINER_ID ,SCROLLABLE_CLASS} from "../constants.js";
 export const CreateResultPage = ()=>{
     const element = document.createElement('div');
     element.id = RESULT_CONTAINER_ID;
-    
-    const resultList = document.createElement('ul');
-    resultList.className = SCROLLABLE_CLASS;
-
-    element.appendChild.resultList;
+    element.className = SCROLLABLE_CLASS;
 
     return element;
 }

@@ -8,6 +8,8 @@
   --right-margin-li: 1.5em;
   --centered-top: 25%;
   --button-padding-size: 2em;
+  --wrong-answer-color: rgba(255, 0, 0, 0.455);
+  --correct-answer-color: rgba(0, 255, 0, 0.473);
 }
 
 html {
@@ -104,7 +106,7 @@ body {
   animation: fadeIn-effect-anime 1s 1;
 }
 
-#next-question-button, #give-test-button {
+#giveup-question-button, #next-question-button, #explanation-question-button {
   margin-top: 1.7em;
   margin-right: 0.5em;
   margin-left: 0.5em;
@@ -257,16 +259,16 @@ h6 {
   }
   66% {
     transform: scale(1.15);
-    background-color: rgb(255, 0, 0);
+    background-color: rgba(255, 0, 0, 0.78);
   }
   77% {
     transform: scale(1.19);
-    background-color: rgb(255, 0, 0);
+    background-color: rgba(255, 0, 0, 0.78);
     color: rgba(255, 255, 255, 0.711);
   }
   100% {
     transform: scale(1);
-    background-color: rgb(255, 0, 0);
+    background-color: rgba(255, 0, 0, 0.78);
   }
 }
 @keyframes correct-answer-indication {

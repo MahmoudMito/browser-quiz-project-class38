@@ -1,6 +1,6 @@
 'use strict';
 
-import { USER_INTERFACE_ID } from "../constants.js";
+import { BUTTON_BORDER_SIZE_CSS_VAR, USER_INTERFACE_ID } from "../constants.js";
 import { quizData, userScore } from "../data.js";
 import { CreateResultPage } from "../views/resultPageView.js";
 
@@ -11,21 +11,21 @@ export const initResultPage = ()=>{
     const resultElement = CreateResultPage();
     
     quizData.questions.forEach(question=>{
-        resultElement.getElementsByTagName('ul').textContent = 
-        String.raw`
-            ${question.selected && question.correct === question.selected?
-                '✅ ':'❌ '} 
-            ${question.text}
-        `;
+        const resultList = document.createElement('ul');
+        resultList.textContent = 
+        `${question.selected && question.correct === question.selected?
+                '✅ ':'❌ '}${question.text}`;
         for(const [key,value] of Object.entries(question.answers)){
             const answerList = document.createElement('li');
             answerList.textContent = `${key}: ${value}`;
             answerList.style.backgroundColor = 
-                question.selected && question.correct === question.selected?
+                key === question.correct?
                 'green':'red';
-
+                resultList.appendChild(answerList);
+            answerList.style.border = `var(${BUTTON_BORDER_SIZE_CSS_VAR})`;
         };
+        resultElement.appendChild(resultList);
     });
-
+    userInterface.appendChild(resultElement);
 
 }
