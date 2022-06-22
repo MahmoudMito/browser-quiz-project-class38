@@ -20,7 +20,6 @@ export const createBackgroundPage = (NumberOfSpans)=>{
     }
 
     const element = document.createElement('div');
-    element.innerHTML = '';
     element.id = BACKGROUND_MATRIX_ID;
     const letters = getRandomLetter(NumberOfSpans);
     

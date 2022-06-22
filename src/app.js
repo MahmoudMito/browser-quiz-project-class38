@@ -10,4 +10,5 @@ const loadApp = () => {
 };
 
 window.addEventListener('load', loadApp);
+window.addEventListener('orientationchange',initBackgroundPage);
 window.addEventListener('resize',initBackgroundPage);
