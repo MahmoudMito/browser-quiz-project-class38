@@ -5,7 +5,7 @@ import { ALPHANUMERIC_MATRIX, BACKGROUND_MATRIX_ID,
 export const createBackgroundPage = (NumberOfSpans)=>{
     const getRandomLetter = (NumberOfLetters = 1)=> {
         let data = [];
-        let randomBrightStrip = Math.floor(NumberOfSpans);
+        let randomBrightStrip = NumberOfSpans;
         for (const index of Array(NumberOfLetters)){
             const randomKey = Math.floor((Math.random() * Object.keys(ALPHANUMERIC_MATRIX).length));
             const randomValue = Math.floor((Math.random() * Object.values(ALPHANUMERIC_MATRIX)[randomKey].length));

@@ -5,15 +5,25 @@ $primary-color: rgb(14, 14, 14);
 $accent-color:  rgb(2, 31, 37);
 $text-color: rgba(0, 244, 77, 0.705);
 $text-color-matrix: rgb(9, 255, 0);
+$text-color-answer: rgba(255, 255, 255, 0.711);
 $button-color-stroke: rgba(3, 81, 29, 0.08);
 $button-color-background: rgba(8, 97, 26, 0.169);
+$button-color-background-hover: rgba(3, 30, 9, 0.237);
 $background-overlay-opacity: .51;
+$correct-answer-color: rgb(0, 255, 0);
+$wrong-answer-color: rgba(255, 0, 0, 0.78);
 :root{
   --grid-size : 5px;
   --button-border-size: 5px;
   --stack-font-size: 18px;
   --primary-color: rgb(0, 44, 44);
   --accent-color:  rgb(0, 0, 0);
+  --top-margin-li: 1.5em;
+  --right-margin-li: 1.5em;
+  --centered-top: 20%;
+  --button-padding-size: 2em;
+  --wrong-answer-color: rgba(255, 0, 0, 0.455);
+  --correct-answer-color: rgba(0, 255, 0, 0.473);
 }
 html {
   scroll-behavior: smooth;
@@ -25,21 +35,33 @@ html {
 
 }
 
-@media (max-width: 390px) {
+@media (max-width: 415px) {
   * {
       --grid-size: 3px;
       --button-border-size: 2px;
       --stack-font-size: 14px;
+      --top-margin-li: 1.3em;
+      --right-margin-li: 2em;
+      --centered-top: 25%;
+      --button-padding-size: 1em;
   }
 }
-@media (max-height: 390px) {
+@media (max-height: 415px) {
   * {
       --grid-size: 3px;
       --button-border-size: 2px;
       --stack-font-size: 14px;
+      --top-margin-li: .5em;
+      --right-margin-li: 2em;
+      --centered-top: 0%;
+      --button-padding-size: 1em;
   }
 }
-
+@media (max-height: 900px){
+  * {
+      --centered-top: 5%;
+  }
+}
 @keyframes fadeIn-effect-anime {
   0% {
     opacity: .3;
@@ -64,50 +86,76 @@ html {
   }
 
 }
-@mixin user-interface-props ($index, $position) {
-  z-index: $index;
-  position: $position;
-  height: calc($stack-height * .7);
-  width: $stack-width;
-  margin: 0;
+@mixin hover-effect {
+  filter:drop-shadow(.1em .2em .7em $text-color-matrix);
+  animation: fadeIn-effect-anime .79s 1;
 }
 button {
   background-color: $button-color-background;
   color: $text-color;
   border: var(--button-border-size) solid $button-color-stroke;
-  padding-right: 2em;
-  padding-left: 2em;
-  padding-top: .5em;
-  padding-bottom: .5em;
-  font-size: calc(var(--stack-font-size) * 1.15);
-
+  padding-right: var(--button-padding-size);
+  padding-left: var(--button-padding-size);
+  padding-top: calc(var(--button-padding-size) * .25);
+  padding-bottom: calc(var(--button-padding-size) * .25);
+  font-size: calc(var(--stack-font-size) * 1.23);
 }
 button:hover{
-  filter:drop-shadow(.1em .2em .7em $text-color-matrix);
-  animation: fadeIn-effect-anime .79s 1;
+  @include hover-effect();
 }
 body{
   width: $stack-width;
   height: $stack-height;
 }
+@mixin user-interface-props ($index, $position) {
+  z-index: $index;
+  position: $position;
+  height: $stack-height;
+  width: $stack-width;
+  margin: 0;
+}
 .centered {
   @include user-interface-props(20,fixed);
   left: 0%;
-  top: 10%;
+  transform:translateY(var(--centered-top));
   text-align: center;
   color: $text-color;
   animation: fadeIn-effect-anime 1s 1;
-  
 }
-  
+#info-container {
+  background-color: $button-color-background;
+  width: 100%;
+  height: 3em;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-around;
+  align-items: center;
+  #score{
+    color: $text-color;
+    // text-align: left;
+  }
+}
+#question-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+#question-navigation-buttons-container {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+}
+#giveup-question-button, #next-question-button ,#explanation-question-button{
+  margin-top: 1.7em;
+  margin-right: .5em;
+  width: 10em;
+}
 .scrollable {
-height: auto;
-max-height: 80vh;
-overflow: auto;
-}
-
-ul {
-list-style: none;
+  height: auto;
+  max-height: 80vh;
+  overflow: auto;
 }
 
 @mixin background-props ($index,$position){
@@ -161,10 +209,96 @@ span[id^='background-span-matrix-']{
   filter: saturate(5);
   
 }
-h6{
-  font-size: calc(var(--stack-font-size) * 3);
-  filter:drop-shadow(.1em .2em .3em $text-color-matrix);
+@mixin question-effect-anime {
   animation: matrix-anime 3s infinite;
   animation-direction: alternate;
   animation-timing-function: ease-in-out;
+}
+h1 {
+  @include question-effect-anime();
+  font-size: calc(var(--stack-font-size) * 1.7);
+}
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+li {
+  margin-top: var(--top-margin-li);
+  margin-right: var(--right-margin-li);
+  width: calc($stack-width * .9);
+  font-size: calc(var(--stack-font-size) * 1.37);
+  padding-top: calc(var(--button-padding-size) *.5);
+  padding-bottom: calc(var(--button-padding-size) *.5);
+  background-color: $button-color-background;
+  color: $text-color;
+  border: var(--button-border-size) solid $button-color-stroke;
+}
+li:hover {
+  @include hover-effect();
+  background-color: $button-color-background-hover;
+}
+h6 {
+  @include question-effect-anime();
+  font-size: calc(var(--stack-font-size) * 3);
+  filter:drop-shadow(.1em .2em .3em $text-color-matrix);
+}
+
+@keyframes correct-answer-effect-anime {
+  33% {
+    transform: scale(1.1);
+    color: $text-color-answer;
+    filter:drop-shadow(.1em .2em 1em $text-color-matrix);
+  }
+  66%{
+    transform: scale(1.15);
+    background-color: $correct-answer-color;
+  }
+  77%{
+    transform: scale(1.19);
+    background-color: $correct-answer-color;
+    color: $text-color-answer;
+  }
+  100%{
+    transform: scale(1);
+    background-color: $correct-answer-color;
+  }
+}
+@keyframes wrong-answer-effect-anime {
+  33% {
+    transform: scale(1.1);
+    filter:drop-shadow(.1em .2em 1em $text-color-matrix);
+    color: $text-color-answer;
+  }
+  66%{
+    transform: scale(1.15);
+    background-color: $wrong-answer-color;
+  }
+  77%{
+    transform: scale(1.19);
+    background-color: $wrong-answer-color;
+    color: $text-color-answer;
+  }
+  100%{
+    transform: scale(1);
+    background-color: $wrong-answer-color;
+  }
+}
+@keyframes correct-answer-indication {
+  33% {
+    background-color: $correct-answer-color;
+    border: var(--button-border-size) solid $button-color-stroke;
+    color: $text-color-answer;
+  }
+  66%{
+    background-color: $accent-color;
+  }
+  77%{
+    background-color: $correct-answer-color;
+    color: $text-color-answer;
+  }
+  100%{
+    background-color: $accent-color;
+  }
 }
