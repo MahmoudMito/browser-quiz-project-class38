@@ -13,6 +13,19 @@
 export const resultsOfQuestions = [];
 export const theScore = [0];
 
+let totalScore = 0;
+
+export const userScore = (increase = false,reset = false)=>{
+  
+  if (increase){
+    totalScore++;
+  }
+  if (reset){
+    totalScore =0;
+  }
+  return totalScore;
+}
+
 export const quizData = {
   currentQuestionIndex: 0,
   // the questions in the quiz
@@ -180,6 +193,7 @@ export const quizData = {
       },
       correct: 'c',
       selected: null,
+// <<<<<<< Sezgin_Branch1
       explanation:'Class selectors are used to specify a group of elements. Id selector specifies a particular unique element.',
     
       links: [
@@ -207,6 +221,10 @@ export const quizData = {
           href: 'https://www.sanfoundry.com/1000-css-questions-answers/',
         },
       ],
+// =======
+//       // this explanation 200char max will pop up as an alarm in the browser
+//       explanation:'const is not the same as letconst is not the same as letconst is not the same as let',
+// >>>>>>> Merge_Branch
     },
     {
       text: 'Which of the following CSS property defines the different properties of all four sides of an element’s border in a single declaration?',
@@ -218,6 +236,7 @@ export const quizData = {
       },
       correct: 'b',
       selected: null,
+// <<<<<<< Sezgin_Branch1
       explanation:'The border-width property sets the width of an element`s four borders. This property can have from one to four values.',
     
       links: [
@@ -399,6 +418,9 @@ export const quizData = {
           href: 'https://www.sanfoundry.com/1000-javascript-questions-answers/',
         },
       ],
+// =======
+//       explanation:'const is not the same as letconst is not the same as letconst is not the same as let',
+// >>>>>>> Merge_Branch
     },
     
   ],
