@@ -3,10 +3,10 @@
 import { ANSWERS_LIST_ID , EXPLANATION_BUTTON_ID, 
   GIVEUP_QUESTION_BUTTON_ID,QUESTION_CONTAINER_ID,
   NEXT_QUESTION_BUTTON_ID,
-  SCORE_Id,
+  SCORE_ID,
   QUESTION_NAVIGATION_BUTTON_CONTAINER_ID,
   INFO_CONTAINER,
-  TIMER_Id,
+  TIMER_ID,
 } from '../constants.js';
 
 
@@ -21,10 +21,7 @@ export const createQuestionElement = (question,score) => {
   element.innerHTML = String.raw`
     <div id=${INFO_CONTAINER}>
       <div>
-        <p>Score: <span id=${SCORE_Id}>${score}</span></p>
-      </div>
-      <div>
-        <span id=${TIMER_Id}>00:00</span>
+        <p>Score: <span id=${SCORE_ID}>${score}</span></p>
       </div>
     </div>
     <h1>${question}</h1>
