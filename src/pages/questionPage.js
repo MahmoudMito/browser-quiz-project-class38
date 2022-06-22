@@ -34,7 +34,7 @@ export const initQuestionPage = () => {
 
 
     document.getElementsByTagName('title')[0].textContent = 
-    `The Frontiers Q${quizData.currentQuestionIndex+1}`;
+    `The Frontiers Question-${quizData.currentQuestionIndex+1}`;
 
 
 };
