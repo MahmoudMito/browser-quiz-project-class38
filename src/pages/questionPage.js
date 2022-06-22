@@ -3,13 +3,20 @@
 import {
   ANSWERS_LIST_ID,
   NEXT_QUESTION_BUTTON_ID,
+  SCORE_ID,
   USER_INTERFACE_ID,
 } from '../constants.js';
 import { createQuestionElement } from '../views/questionView.js';
 import { createAnswerElement } from '../views/answerView.js';
 import { quizData } from '../data.js';
-
+import { resultsOfQuestions } from '../data.js';
+import { theScore } from '../data.js';
+import {SHOW_REPORT} from '../constants.js';
 export const initQuestionPage = () => {
+  
+  resultsOfQuestions.push([quizData.currentQuestionIndex+1, 'unchecked']);
+  console.log(resultsOfQuestions);
+
   const userInterface = document.getElementById(USER_INTERFACE_ID);
   userInterface.innerHTML = '';
 
@@ -26,27 +33,62 @@ export const initQuestionPage = () => {
     answersListElement.appendChild(answerElement);
   }
 
+// Amer-Sezgin Added:
 
+Array.from(answersListElement.children).forEach((answer) => {
+  answer.addEventListener('click', checkAnswer)
+  
+});
+
+function checkAnswer(){
+
+   const selectedAnswer = quizData.questions[quizData.currentQuestionIndex].selected ;
+   const theCorrectAnswer = quizData.questions[quizData.currentQuestionIndex].correct;
+
+   if ( selectedAnswer === null){
+
+    const theUserAnswer = this.innerText.split('')[0];
+    quizData.questions[quizData.currentQuestionIndex].selected = theUserAnswer;
+
+    if ( theUserAnswer === theCorrectAnswer){
+      resultsOfQuestions[quizData.currentQuestionIndex] = [quizData.currentQuestionIndex+1, 'correct'];
+
+      const scoreElement = document.getElementById(SCORE_ID);
+      theScore[0]++;
+      scoreElement.innerHTML = `Your score is: ${theScore}`;
+
+   } else {
+    resultsOfQuestions[quizData.currentQuestionIndex] = [quizData.currentQuestionIndex+1, 'incorrect'];
+  }
+
+   console.log(resultsOfQuestions);
+}
+}
+
+
+// Amer-Sezgin finished adding.
 
   document
     .getElementById(NEXT_QUESTION_BUTTON_ID)
     .addEventListener('click', nextQuestion);
-
-
-    document.getElementsByTagName('title')[0].textContent = 
-    `The Frontiers Question-${quizData.currentQuestionIndex+1}`;
-
+    const resultButton = document.getElementById(SHOW_REPORT);
+    const questionNextButton=document.getElementById(NEXT_QUESTION_BUTTON_ID);
+    
+    if(quizData.currentQuestionIndex+1<quizData.questions.length){
+     resultButton.style.display='none';
+  
+    }else{
+      questionNextButton.style.display='none';
+      resultButton.style.display='inline-block';
+    };
 
 };
-
-
-
 
 const nextQuestion = () => {
   quizData.currentQuestionIndex = quizData.currentQuestionIndex + 1;
 
   initQuestionPage();
+
+  document.getElementsByTagName('title')[0].textContent =
+  `The Frontiers Question-${quizData.currentQuestionIndex+1}`;
 };
-
-
-

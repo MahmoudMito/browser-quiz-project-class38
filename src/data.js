@@ -10,6 +10,8 @@
     not by your logic
     not by your listeners
 */
+export const resultsOfQuestions = [];
+export const theScore = [0];
 
 export const quizData = {
   currentQuestionIndex: 0,
@@ -72,7 +74,6 @@ export const quizData = {
         },
       ],
     },
-
     {
       text: 'Which element is used for styling HTML5 layout?',
       answers: {
@@ -92,7 +93,6 @@ export const quizData = {
         },
       ],
     },
-
     {
       text: 'Which is the HTML paragraph tag?',
       answers: {
@@ -112,7 +112,6 @@ export const quizData = {
         },
       ],
     },
-
     {
       text: 'Which of the following HTML tag is used to create an unordered list?',
       answers: {
@@ -133,7 +132,6 @@ export const quizData = {
       ],
     },
    
-
     {
       text: 'What is CSS?',
       answers: {
@@ -210,7 +208,6 @@ export const quizData = {
         },
       ],
     },
-
     {
       text: 'Which of the following CSS property defines the different properties of all four sides of an element’s border in a single declaration?',
       answers: {
@@ -230,7 +227,6 @@ export const quizData = {
         },
       ],
     },
-
     {
       text: 'Which of the following CSS property sets the shadow for a box element?',
       answers: {
@@ -307,7 +303,6 @@ export const quizData = {
         },
       ],
     },
-
     {
       text: 'Why JavaScript Engine is needed?',
       answers: {
