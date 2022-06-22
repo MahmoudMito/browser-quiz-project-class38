@@ -5,18 +5,15 @@ import {
   GIVEUP_QUESTION_BUTTON_ID,
   USER_INTERFACE_ID,
   NEXT_QUESTION_BUTTON_ID,
-  SCORE_Id,
+  INFO_CONTAINER,
 } from '../constants.js';
 import { createQuestionElement } from '../views/questionView.js';
 import { createAnswerElement } from '../views/answerView.js';
-
-
-import { timer } from '../views/timerViews.js';
-
 import { quizData, userScore } from '../data.js';
 import {checkCorrectAnswer} from '../pages/answers.js';
 import {initResultPage} from './resultPage.js';
 import {displayButtonElement} from './button.js';
+import { getTimerElement, setTime } from './timer.js';
 
 let answersEventListeners = [];
 
@@ -35,8 +32,8 @@ export const initQuestionPage = () => {
   const questionElement = createQuestionElement(currentQuestion.text,userScore());
 
   userInterface.appendChild(questionElement);
-  userInterface.appendChild(timer);
-
+  questionElement.children[INFO_CONTAINER].
+  appendChild(document.createElement('div').appendChild(getTimerElement()));
 
   const answersListElement = document.getElementById(ANSWERS_LIST_ID);
 
@@ -48,24 +45,23 @@ export const initQuestionPage = () => {
     answerElement.addEventListener('click', answersEventListeners.slice(-1)[0],true);
     answersListElement.appendChild(answerElement);
   }
-
+  
   displayButtonElement(GIVEUP_QUESTION_BUTTON_ID,true,nextQuestion);
   displayButtonElement(NEXT_QUESTION_BUTTON_ID,false,initQuestionPage);
-
+  setTime(true);
 };
 
 
 const nextQuestion = (selectedAnswer = null,selectedAnswerElement = null) => {
   quizData.questions[quizData.currentQuestionIndex].selected = selectedAnswer;
   removeAnswersListeners();
-
+  setTime(false);
   displayButtonElement(GIVEUP_QUESTION_BUTTON_ID,false);
   checkCorrectAnswer(selectedAnswerElement,()=>{
     displayButtonElement(NEXT_QUESTION_BUTTON_ID,true);
+    setTime(true);
   });
   quizData.currentQuestionIndex += 1;
-
-  initQuestionPage();
 
 };
 
