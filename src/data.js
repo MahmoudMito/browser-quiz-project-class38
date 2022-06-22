@@ -10,8 +10,24 @@
     not by your logic
     not by your listeners
 */
-export const resultsOfQuestions = [];
-export const theScore = [0];
+// export const resultsOfQuestions = [];
+// export const theScore = [0];
+// <<<<<<< Amer&Sezgin_Branch
+// =======
+
+let totalScore = 0;
+
+export const userScore = (increase = false,reset = false)=>{
+  
+  if (increase){
+    totalScore++;
+  }
+  if (reset){
+    totalScore =0;
+  }
+  return totalScore;
+}
+// >>>>>>> Merge_Branch
 
 export const quizData = {
   currentQuestionIndex: 0,
@@ -19,6 +35,7 @@ export const quizData = {
   questions: [
     {
       text: 'Who is the father of HTML?',
+// <<<<<<< Amer&Sezgin_Branch
       answers: {
         a: 'Rasmus Lerdorf',
         b: 'Tim Berners-Lee',
@@ -36,9 +53,31 @@ export const quizData = {
         },
       ],
     },
+//     {
+//       text: 'HTML stands for __________',
+//       answers: {
+// =======
+//       answers: {
+//         a: 'Rasmus Lerdorf',
+//         b: 'Tim Berners-Lee',
+//         c: 'Brendan Eich',
+//         d: 'Sergey Brin',
+//       },
+//       correct: 'b',
+//       selected: null,
+//       explanation:'Timothy John Berners-Lee (TimBL) is known as the father of HTML. He is a British computer scientist, best known as the inventor of the World Wide Web.',
+    
+//       links: [
+//         {
+//           text: 'HTML',
+//           href: 'https://www.sanfoundry.com/1000-html-questions-answers/',
+//         },
+//       ],
+//     },
     {
       text: 'HTML stands for __________',
       answers: {
+// >>>>>>> Merge_Branch
         a: 'HyperText Markup Language',
         b: 'HyperText Machine Language',
         c: 'HyperText Marking Language',
@@ -179,7 +218,11 @@ export const quizData = {
         d: 'both class and tag',
       },
       correct: 'c',
-      selected: null,
+//       selected: null,
+// <<<<<<< Amer&Sezgin_Branch
+// =======
+// // <<<<<<< Sezgin_Branch1
+// >>>>>>> Merge_Branch
       explanation:'Class selectors are used to specify a group of elements. Id selector specifies a particular unique element.',
     
       links: [
@@ -207,6 +250,10 @@ export const quizData = {
           href: 'https://www.sanfoundry.com/1000-css-questions-answers/',
         },
       ],
+// =======
+//       // this explanation 200char max will pop up as an alarm in the browser
+//       explanation:'const is not the same as letconst is not the same as letconst is not the same as let',
+// >>>>>>> Merge_Branch
     },
     {
       text: 'Which of the following CSS property defines the different properties of all four sides of an element’s border in a single declaration?',
@@ -217,7 +264,11 @@ export const quizData = {
         d: 'border',
       },
       correct: 'b',
-      selected: null,
+//       selected: null,
+// <<<<<<< Amer&Sezgin_Branch
+// =======
+// // <<<<<<< Sezgin_Branch1
+// >>>>>>> Merge_Branch
       explanation:'The border-width property sets the width of an element`s four borders. This property can have from one to four values.',
     
       links: [
@@ -399,6 +450,9 @@ export const quizData = {
           href: 'https://www.sanfoundry.com/1000-javascript-questions-answers/',
         },
       ],
+// =======
+//       explanation:'const is not the same as letconst is not the same as letconst is not the same as let',
+// >>>>>>> Merge_Branch
     },
     
   ],
