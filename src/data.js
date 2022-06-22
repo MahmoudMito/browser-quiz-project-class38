@@ -11,6 +11,19 @@
     not by your listeners
 */
 
+let totalScore = 0;
+
+export const userScore = (increase = false,reset = false)=>{
+  
+  if (increase){
+    totalScore++;
+  }
+  if (reset){
+    totalScore =0;
+  }
+  return totalScore;
+}
+
 export const quizData = {
   currentQuestionIndex: 0,
   // the questions in the quiz
@@ -24,16 +37,8 @@ export const quizData = {
       },
       correct: 'c',
       selected: null,
-      links: [
-        {
-          text: 'javascript.info',
-          href: 'https://javascript.info/variables',
-        },
-        {
-          text: 'Tyler McGinnis',
-          href: 'https://ui.dev/var-let-const/',
-        },
-      ],
+      // this explanation 200char max will pop up as an alarm in the browser
+      explanation:'const is not the same as letconst is not the same as letconst is not the same as let',
     },
     {
       text: 'What does `typeof` do?',
@@ -45,17 +50,7 @@ export const quizData = {
       },
       correct: 'b',
       selected: null,
-      links: [
-        {
-          text: 'javascript.info',
-          href: 'https://javascript.info/types#type-typeof',
-        },
-        {
-          text: 'MDN',
-          href:
-            'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof',
-        },
-      ],
+      explanation:'const is not the same as letconst is not the same as letconst is not the same as let',
     },
     // Add more questions here
   ],
