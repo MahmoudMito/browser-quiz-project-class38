@@ -9,11 +9,15 @@ import { START_QUIZ_BUTTON_ID } from '../constants.js';
 export const createWelcomeElement = () => {
   const element = document.createElement('div');
   element.innerHTML = String.raw`
+//<<<<<<< Amer&Sezgin_Branch
+    <h1>Welcome To Frontiers HTML&CSS&JS Quiz</h1>
+//=======
 //<<<<<<< Sezgin_Branch1
-    <h1>Welcome Class 38 Demo Presentation</h1>
+//    <h1>Welcome Class 38 Demo Presentation</h1>
 //=======
     <h6>The Frontiers' Quiz</h6>
     <br>
+//>>>>>>> Merge_Branch
 //>>>>>>> Merge_Branch
     <button id="${START_QUIZ_BUTTON_ID}">start quiz</button>
     <h6>Class 38</h6>

@@ -27,9 +27,13 @@ export const ACCENT_COLOR_CSS_VAR = '--accent-color';
 export const TIMER_ID = 'timer';
 export const EXPLANATION_BUTTON_ID = 'explanation-question-button';
 export const NEXT_QUESTION_BUTTON_ID = 'next-question-button';
+// <<<<<<< Amer&Sezgin_Branch
+// export const SCORE_ID = 'score';
+// export const NUMBER_OF_ANSWERED_QUESTIONS = 'answered-questions';
+// =======
 
 export const NUMBER_OF_ANSWERED_QUESTIONS = 'answered-questions';
-export const SHOW_REPORT = 'show-result-button';
+// export const SHOW_REPORT = 'show-result-button';
 
 export const QUESTION_CONTAINER_ID = 'question-container';
 export const QUESTION_NAVIGATION_BUTTON_CONTAINER_ID = 'question-navigation-buttons-container';
@@ -133,3 +137,4 @@ export const ALPHANUMERIC_MATRIX = {
   NUMBERS: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
   SYMBOLS: ['*', '(', ')', '-', '+', '#', '@', '!', '?', '>', '<'],
 };
+// >>>>>>> Merge_Branch
