@@ -27,6 +27,10 @@ export const ACCENT_COLOR_CSS_VAR = '--accent-color';
 export const TIMER_ID = 'timer';
 export const EXPLANATION_BUTTON_ID = 'explanation-question-button';
 export const NEXT_QUESTION_BUTTON_ID = 'next-question-button';
+
+export const NUMBER_OF_ANSWERED_QUESTIONS = 'answered-questions';
+export const SHOW_REPORT = 'show-result-button';
+
 export const QUESTION_CONTAINER_ID = 'question-container';
 export const QUESTION_NAVIGATION_BUTTON_CONTAINER_ID = 'question-navigation-buttons-container';
 export const RESULT_CONTAINER_ID = 'result-container';
