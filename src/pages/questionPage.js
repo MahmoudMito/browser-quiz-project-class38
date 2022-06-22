@@ -9,12 +9,17 @@ import {
 } from '../constants.js';
 import { createQuestionElement } from '../views/questionView.js';
 import { createAnswerElement } from '../views/answerView.js';
+
+
+import { timer } from '../views/timerViews.js';
+
 import { quizData, userScore } from '../data.js';
 import {checkCorrectAnswer} from '../pages/answers.js';
 import {initResultPage} from './resultPage.js';
 import {displayButtonElement} from './button.js';
 
 let answersEventListeners = [];
+
 
 export const initQuestionPage = () => {
   answersEventListeners = [];
@@ -30,6 +35,8 @@ export const initQuestionPage = () => {
   const questionElement = createQuestionElement(currentQuestion.text,userScore());
 
   userInterface.appendChild(questionElement);
+  userInterface.appendChild(timer);
+
 
   const answersListElement = document.getElementById(ANSWERS_LIST_ID);
 
@@ -57,6 +64,9 @@ const nextQuestion = (selectedAnswer = null,selectedAnswerElement = null) => {
     displayButtonElement(NEXT_QUESTION_BUTTON_ID,true);
   });
   quizData.currentQuestionIndex += 1;
+
+  initQuestionPage();
+
 };
 
 const removeAnswersListeners = ()=>{
@@ -65,5 +75,6 @@ const removeAnswersListeners = ()=>{
       answer.removeEventListener('click',answersEventListeners[index],true);
       index++;
     }
+
 };
 
