@@ -27,14 +27,17 @@ export const ACCENT_COLOR_CSS_VAR = '--accent-color';
 export const EXPLANATION_BUTTON_ID = 'explanation-question-button';
 export const NEXT_QUESTION_BUTTON_ID = 'next-question-button';
 export const QUESTION_CONTAINER_ID = 'question-container';
+export const QUESTION_NAVIGATION_BUTTON_CONTAINER_ID = 'question-navigation-buttons-container';
 export const RESULT_CONTAINER_ID = 'result-container';
 export const SCROLLABLE_CLASS = 'scrollable';
 export const RESULT_CORRECT_ANSWER = 'result-correct-answer';
 export const RESULT_WRONG_ANSWER = 'result-wrong-answer';
-export const SCORE_ID = 'score';
+export const SCORE_Id = 'score';
+export const INFO_CONTAINER = 'info-container';
 export const BUTTON_BORDER_SIZE_CSS_VAR = '--button-border-size';
 export const WRONG_ANSWER_COLOR_CSS_VAR = '--wrong-answer-color';
 export const CORRECT_ANSWER_COLOR_CSS_VAR = '--correct-answer-color';
+export const TIMER_Id = 'timer';
 export const ALPHANUMERIC_MATRIX = {
     LETTERS_UPPERCASE : ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
     LETTERS_LOWERCASE : ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'],

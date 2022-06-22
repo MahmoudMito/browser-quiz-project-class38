@@ -1,9 +1,7 @@
 'use strict';
 
 
-import {ACTIVE_BUTTON_ANIMATION,
-    NEXT_QUESTION_BUTTON_ID} from '../constants.js'
-import { initQuestionPage } from './questionPage.js';
+import {ACTIVE_BUTTON_ANIMATION} from '../constants.js';
     
 
 export const setButtonActive = (buttonId, passFunction)=>{
@@ -17,10 +15,12 @@ export const setButtonActive = (buttonId, passFunction)=>{
 };
 
 
-export const setNextButton = (show)=>{
-    document.getElementById(NEXT_QUESTION_BUTTON_ID).style.display = 
+export const displayButtonElement = (elementId,show,passFunction = null)=>{
+    document.getElementById(elementId).style.display = 
     show? 'block':
     'none';
-    document.getElementById(NEXT_QUESTION_BUTTON_ID).
-    addEventListener('click',initQuestionPage);
+    if (passFunction){
+        document.getElementById(elementId).
+        addEventListener('click',passFunction);
+    }
   };

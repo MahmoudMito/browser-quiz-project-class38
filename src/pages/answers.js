@@ -5,8 +5,9 @@ import {
     ANSWERS_LIST_ID,
     CORRECT_ANSWER_COLOR_CSS_VAR,
     WRONG_ANSWER_COLOR_CSS_VAR,
+    SCORE_Id,
   } from '../constants.js';
-import { quizData } from '../data.js';
+import { quizData, userScore } from '../data.js';
 
 
 export const checkCorrectAnswer = (selectedAnswerElement,passFunction)=>{
@@ -14,6 +15,7 @@ export const checkCorrectAnswer = (selectedAnswerElement,passFunction)=>{
     quizData.questions[quizData.currentQuestionIndex].correct){
       selectedAnswerElement.style.animation = CORRECT_ANSWER_LIST_ANIMATION;
       selectedAnswerElement.style.backgroundColor = `var(${CORRECT_ANSWER_COLOR_CSS_VAR})`;
+      document.getElementById(SCORE_Id).textContent = userScore(true);
   } else if(!selectedAnswerElement) {
     indicateCorrectAnswer(null,passFunction);
     return;

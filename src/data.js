@@ -10,7 +10,20 @@
     not by your logic
     not by your listeners
 */
-export let userScore = 0;
+
+let totalScore = 0;
+
+export const userScore = (increase = false,reset = false)=>{
+  
+  if (increase){
+    totalScore++;
+  }
+  if (reset){
+    totalScore =0;
+  }
+  return totalScore;
+}
+
 export const quizData = {
   currentQuestionIndex: 0,
   // the questions in the quiz

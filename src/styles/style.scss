@@ -20,7 +20,7 @@ $wrong-answer-color: rgba(255, 0, 0, 0.78);
   --accent-color:  rgb(0, 0, 0);
   --top-margin-li: 1.5em;
   --right-margin-li: 1.5em;
-  --centered-top: 25%;
+  --centered-top: 20%;
   --button-padding-size: 2em;
   --wrong-answer-color: rgba(255, 0, 0, 0.455);
   --correct-answer-color: rgba(0, 255, 0, 0.473);
@@ -35,7 +35,7 @@ html {
 
 }
 
-@media (max-width: 390px) {
+@media (max-width: 415px) {
   * {
       --grid-size: 3px;
       --button-border-size: 2px;
@@ -46,7 +46,7 @@ html {
       --button-padding-size: 1em;
   }
 }
-@media (max-height: 390px) {
+@media (max-height: 415px) {
   * {
       --grid-size: 3px;
       --button-border-size: 2px;
@@ -110,8 +110,8 @@ body{
 @mixin user-interface-props ($index, $position) {
   z-index: $index;
   position: $position;
-  height: calc($stack-height * .85);
-  width: calc($stack-width * .98);
+  height: $stack-height;
+  width: $stack-width;
   margin: 0;
 }
 .centered {
@@ -122,12 +122,35 @@ body{
   color: $text-color;
   animation: fadeIn-effect-anime 1s 1;
 }
-
+#info-container {
+  background-color: $button-color-background;
+  width: 100%;
+  height: 3em;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-around;
+  align-items: center;
+  #score{
+    color: $text-color;
+    // text-align: left;
+  }
+}
+#question-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+#question-navigation-buttons-container {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+}
 #giveup-question-button, #next-question-button ,#explanation-question-button{
   margin-top: 1.7em;
   margin-right: .5em;
-  margin-left: .5em;
-
+  width: 10em;
 }
 .scrollable {
   height: auto;
