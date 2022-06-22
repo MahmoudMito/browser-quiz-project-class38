@@ -30,10 +30,10 @@ export const createQuestionElement = (question,score) => {
     </ul>
     <div id="${QUESTION_NAVIGATION_BUTTON_CONTAINER_ID}">
       <button id="${GIVEUP_QUESTION_BUTTON_ID}">
-        Dunno 😔
+        Dunno! 😔
       </button>
       <button id="${EXPLANATION_BUTTON_ID}">
-        Explanation
+        Hints! 🙃
       </button>
       <button id="${NEXT_QUESTION_BUTTON_ID}">
         Next

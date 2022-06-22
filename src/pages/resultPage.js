@@ -6,7 +6,7 @@ import { CreateResultPage } from "../views/resultPageView.js";
 
 
 export const initResultPage = ()=>{
-    const userInterface = document.getElementById(USER_INTERFACE_ID)
+    const userInterface = document.getElementById(USER_INTERFACE_ID);
     userInterface.innerHTML = '';
     const resultElement = CreateResultPage();
     

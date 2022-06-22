@@ -14,6 +14,7 @@ import {checkCorrectAnswer} from '../pages/answers.js';
 import {initResultPage} from './resultPage.js';
 import {displayButtonElement} from './button.js';
 import { getTimerElement, setTime } from './timer.js';
+import { initHintPage } from './hintPage.js';
 
 let answersEventListeners = [];
 
@@ -49,6 +50,7 @@ export const initQuestionPage = () => {
   displayButtonElement(GIVEUP_QUESTION_BUTTON_ID,true,nextQuestion);
   displayButtonElement(NEXT_QUESTION_BUTTON_ID,false,initQuestionPage);
   setTime(true);
+  // initHintPage();
 };
 
 
