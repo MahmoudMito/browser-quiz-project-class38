@@ -6,6 +6,7 @@ import {
   USER_INTERFACE_ID,
   NEXT_QUESTION_BUTTON_ID,
   INFO_CONTAINER,
+  EXPLANATION_BUTTON_ID,
 } from '../constants.js';
 import { createQuestionElement } from '../views/questionView.js';
 import { createAnswerElement } from '../views/answerView.js';
@@ -14,7 +15,7 @@ import {checkCorrectAnswer} from '../pages/answers.js';
 import {initResultPage} from './resultPage.js';
 import {displayButtonElement} from './button.js';
 import { getTimerElement, setTime } from './timer.js';
-import { initHintPage } from './hintPage.js';
+import { initHintPage, setHintPage } from './hintPage.js';
 
 let answersEventListeners = [];
 
@@ -50,7 +51,14 @@ export const initQuestionPage = () => {
   displayButtonElement(GIVEUP_QUESTION_BUTTON_ID,true,nextQuestion);
   displayButtonElement(NEXT_QUESTION_BUTTON_ID,false,initQuestionPage);
   setTime(true);
-  // initHintPage();
+  
+  
+  document.getElementById(EXPLANATION_BUTTON_ID).addEventListener('click',
+    ()=>{
+      initHintPage();
+      setHintPage(true);
+    });
+  
 };
 
 

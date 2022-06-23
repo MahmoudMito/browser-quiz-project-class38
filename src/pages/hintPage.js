@@ -1,35 +1,46 @@
 'use strict';
 
-import { EXPLANATION_BUTTON_ID, EXTERNAL_LINKS_ID, POPUP_CLOSE_BUTTON_ID } from "../constants.js";
+import { EXTERNAL_LINKS_ID, POPUP_CLOSE_BUTTON_ID, POPUP_CONTAINER_ID } from "../constants.js";
 import { quizData } from "../data.js";
 import { createHintView } from "../views/hintView.js";
+import { createLinksElement } from "../views/linksView.js";
 
+let cancelButtonEventListener = null;
 
 export const initHintPage = ()=>{
-    const hintPageElement = createHintView();
-    hintPageElement.style.display = 'none';
-    hintPageElement.style.backgroundColor = 
-    quizData.questions[quizData.currentQuestionIndex].links.forEach((link,index)=>{
-        const list = document.createElement('li');
-        const linkElement = document.createElement('link');
-        linkElement.setAttribute('href',link);
-        list.appendChild(linkElement);
-        list.textContent = `Link${index}`;
-        hintPageElement.getElementById(EXTERNAL_LINKS_ID).appendChild(list);
-    });
-    hintPageElement.childNodes[EXPLANATION_BUTTON_ID].addEventListener('click',
-    ()=>{
-        setHintPage(true);
-    });
-    hintPageElement.childNodes[POPUP_CLOSE_BUTTON_ID].addEventListener('click',
-    ()=>{
-        setHintPage(false);
-    });
+    
+    const popupContainer = document.getElementById(POPUP_CONTAINER_ID);
+    popupContainer.innerHTML = '';
+    popupContainer.style.display = 'none';
+
+    const hintPageElement = createHintView(quizData.questions[quizData.currentQuestionIndex].explanation);
+
+    popupContainer.appendChild(hintPageElement);
+
+    const linksElement = createLinksElement(quizData.questions[quizData.currentQuestionIndex].links);
+    
+    document.getElementById(EXTERNAL_LINKS_ID).appendChild(linksElement);
+    refreshEventListener();
+
 }
 
-const setHintPage = (show)=>{
+export const setHintPage = (show)=>{
     show?
-    document.getElementById(EXPLANATION_CONTAINER_ID).style.display = 'block':
-    document.getElementById(EXPLANATION_CONTAINER_ID).style.display = 'none';
+    document.getElementById(POPUP_CONTAINER_ID).style.display = 'block':
+    document.getElementById(POPUP_CONTAINER_ID).style.display = 'none';
 
+}
+
+
+const refreshEventListener = ()=>{
+    if (cancelButtonEventListener) {
+        document.getElementById(POPUP_CLOSE_BUTTON_ID).removeEventListener('click',
+        cancelButtonEventListener,true);
+        cancelButtonEventListener = null;
+    }
+    cancelButtonEventListener = ()=> {
+        setHintPage(false);
+    }
+    document.getElementById(POPUP_CLOSE_BUTTON_ID).addEventListener('click',
+    cancelButtonEventListener,true);
 }

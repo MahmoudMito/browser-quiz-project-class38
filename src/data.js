@@ -40,7 +40,12 @@ export const quizData = {
       // this explanation 200char max will pop up as an alarm in the browser
       explanation:'const is not the same as letconst is not the same as letconst is not the same as let',
       // Links reference for the hint or explanation
-      links:['https://example1.com/','https://example2.com/','https://example3.com/'],
+      links: [
+        {
+          text: 'Some hint!1',
+          href: 'https://www.examlple.com',
+        },
+      ],
     },
     {
       text: 'What does `typeof` do?',
@@ -53,7 +58,12 @@ export const quizData = {
       correct: 'b',
       selected: null,
       explanation:'const is not the same as letconst is not the same as letconst is not the same as let',
-      links:['https://example1.com/','https://example2.com/','https://example3.com/'],
+      links: [
+        {
+          text: 'Somehint!!!2',
+          href: 'https://www.examlple.com',
+        },
+      ],
     },
     // Add more questions here
   ],
