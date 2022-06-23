@@ -6,6 +6,7 @@ import {
   USER_INTERFACE_ID,
   NEXT_QUESTION_BUTTON_ID,
   INFO_CONTAINER,
+  EXPLANATION_BUTTON_ID,
 } from '../constants.js';
 import { createQuestionElement } from '../views/questionView.js';
 import { createAnswerElement } from '../views/answerView.js';
@@ -14,6 +15,7 @@ import {checkCorrectAnswer} from '../pages/answers.js';
 import {initResultPage} from './resultPage.js';
 import {displayButtonElement} from './button.js';
 import { getTimerElement, setTime } from './timer.js';
+import { initHintPage, setHintPage } from './hintPage.js';
 
 let answersEventListeners = [];
 
@@ -29,7 +31,8 @@ export const initQuestionPage = () => {
 
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
 
-  const questionElement = createQuestionElement(currentQuestion.text,userScore());
+  const questionElement = createQuestionElement(currentQuestion.text,userScore(),
+  quizData.currentQuestionIndex === quizData.questions.length -1);
 
   userInterface.appendChild(questionElement);
   questionElement.children[INFO_CONTAINER].
@@ -47,8 +50,19 @@ export const initQuestionPage = () => {
   }
   
   displayButtonElement(GIVEUP_QUESTION_BUTTON_ID,true,nextQuestion);
-  displayButtonElement(NEXT_QUESTION_BUTTON_ID,false,initQuestionPage);
+  displayButtonElement(NEXT_QUESTION_BUTTON_ID,false,()=>{
+    quizData.currentHintIndex = quizData.currentQuestionIndex;
+    initQuestionPage();
+  });
   setTime(true);
+  
+  
+  document.getElementById(EXPLANATION_BUTTON_ID).addEventListener('click',
+    ()=>{
+      initHintPage();
+      setHintPage(true);
+    });
+  
 };
 
 
@@ -57,12 +71,13 @@ const nextQuestion = (selectedAnswer = null,selectedAnswerElement = null) => {
   removeAnswersListeners();
   setTime(false);
   displayButtonElement(GIVEUP_QUESTION_BUTTON_ID,false);
+
   checkCorrectAnswer(selectedAnswerElement,()=>{
     displayButtonElement(NEXT_QUESTION_BUTTON_ID,true);
     setTime(true);
   });
   quizData.currentQuestionIndex += 1;
-
+  quizData.currentHintIndex = quizData.currentQuestionIndex -1;
 };
 
 const removeAnswersListeners = ()=>{

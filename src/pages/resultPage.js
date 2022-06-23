@@ -1,28 +1,47 @@
 'use strict';
 
-import { BUTTON_BORDER_SIZE_CSS_VAR, USER_INTERFACE_ID } from "../constants.js";
+import { CORRECT_ANSWER_COLOR_CSS_VAR,
+    USER_INTERFACE_ID, 
+    WRONG_ANSWER_COLOR_CSS_VAR } from "../constants.js";
 import { quizData, userScore } from "../data.js";
-import { CreateResultPage } from "../views/resultPageView.js";
+import { parseHTML } from "../util/htmlParser.js";
+import { createAnswerElement } from "../views/answerView.js";
+import { CreateResultPage } from "../views/resultView.js";
+import { getTimerElement } from "./timer.js";
 
 
 export const initResultPage = ()=>{
-    const userInterface = document.getElementById(USER_INTERFACE_ID)
+    const userInterface = document.getElementById(USER_INTERFACE_ID);
     userInterface.innerHTML = '';
-    const resultElement = CreateResultPage();
+    const correctAnswerNumber = quizData.questions.filter(answer=>answer.correct===answer.selected).length;
+    const resultElement = CreateResultPage(
+        userScore(),
+        correctAnswerNumber,
+        quizData.questions.length-correctAnswerNumber,
+        quizData.questions.length,
+        getTimerElement()
+    );
     
     quizData.questions.forEach(question=>{
         const resultList = document.createElement('ul');
         resultList.textContent = 
         `${question.selected && question.correct === question.selected?
-                '✅ ':'❌ '}${question.text}`;
+            parseHTML('&#10003; '):parseHTML('&#x2717; ')}${question.text}`;
         for(const [key,value] of Object.entries(question.answers)){
-            const answerList = document.createElement('li');
-            answerList.textContent = `${key}: ${value}`;
-            answerList.style.backgroundColor = 
-                key === question.correct?
-                'green':'red';
-                resultList.appendChild(answerList);
-            answerList.style.border = `var(${BUTTON_BORDER_SIZE_CSS_VAR})`;
+            
+            let color = null;
+            if (key === question.selected){
+                color = question.correct === question.selected ?
+                    CORRECT_ANSWER_COLOR_CSS_VAR :
+                    WRONG_ANSWER_COLOR_CSS_VAR;
+            } else if (key === question.correct && question.correct != question.selected){
+                color = CORRECT_ANSWER_COLOR_CSS_VAR;
+            }
+            
+            const answerList = createAnswerElement(key,value,
+                color
+                );
+            resultList.appendChild(answerList);
         };
         resultElement.appendChild(resultList);
     });

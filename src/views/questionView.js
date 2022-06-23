@@ -14,7 +14,7 @@ import { ANSWERS_LIST_ID , EXPLANATION_BUTTON_ID,
  * Create a full question element
  * @returns {Element}
  */
-export const createQuestionElement = (question,score) => {
+export const createQuestionElement = (question,score,resultButton) => {
   const element = document.createElement('div');
   element.id = QUESTION_CONTAINER_ID;
   // I use String.raw just to get fancy colors for the HTML in VS Code.
@@ -30,13 +30,13 @@ export const createQuestionElement = (question,score) => {
     </ul>
     <div id="${QUESTION_NAVIGATION_BUTTON_CONTAINER_ID}">
       <button id="${GIVEUP_QUESTION_BUTTON_ID}">
-        Dunno 😔
+        Dunno<br>¯\_(ツ)_/¯
       </button>
       <button id="${EXPLANATION_BUTTON_ID}">
-        Explanation
+        Hint<br>(¬_¬)
       </button>
       <button id="${NEXT_QUESTION_BUTTON_ID}">
-        Next
+        ${resultButton? 'Result' :'Next' }
       </button>
     </div>
   `;

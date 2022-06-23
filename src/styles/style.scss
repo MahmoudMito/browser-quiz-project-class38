@@ -12,6 +12,7 @@ $button-color-background-hover: rgba(3, 30, 9, 0.237);
 $background-overlay-opacity: .51;
 $correct-answer-color: rgb(0, 255, 0);
 $wrong-answer-color: rgba(255, 0, 0, 0.78);
+$separator-line-color: rgba(9, 255, 0, 0.286);
 :root{
   --grid-size : 5px;
   --button-border-size: 5px;
@@ -24,6 +25,7 @@ $wrong-answer-color: rgba(255, 0, 0, 0.78);
   --button-padding-size: 2em;
   --wrong-answer-color: rgba(255, 0, 0, 0.455);
   --correct-answer-color: rgba(0, 255, 0, 0.473);
+  --popup-background-color: rgba(0, 0, 0, 0.649);
 }
 html {
   scroll-behavior: smooth;
@@ -32,7 +34,7 @@ html {
   font-family: 'Share Tech Mono', monospace;
   font-size: var(--stack-font-size);
   text-rendering: geometricPrecision;
-
+  font-weight: 400;
 }
 
 @media (max-width: 415px) {
@@ -110,17 +112,60 @@ body{
 @mixin user-interface-props ($index, $position) {
   z-index: $index;
   position: $position;
-  height: $stack-height;
+  height: 100%;
   width: $stack-width;
   margin: 0;
 }
 .centered {
   @include user-interface-props(20,fixed);
   left: 0%;
-  transform:translateY(var(--centered-top));
+  top: 0%;
   text-align: center;
   color: $text-color;
   animation: fadeIn-effect-anime 1s 1;
+  overflow-y: auto;
+}
+#popup-container {
+  position: fixed;
+  left: 0%;
+  top: 15%;
+  width: $stack-width;
+  height: calc($stack-height * .8);
+  z-index: 21;
+  background-color: var(--popup-background-color);
+  ul{
+    text-align: center;
+    li {
+      padding-top: .05em;
+      padding-bottom: .05em;
+    }
+  }
+}
+#result-container {
+  ul {
+    margin-top: calc(var(--top-margin-li) * 1.5);
+    padding-top: var(--top-margin-li);
+    padding-bottom: var(--top-margin-li);
+    border-width: calc(var(--button-border-size) *.5);
+    border-style:groove;
+    border-color: $separator-line-color;
+    font-size: calc(var(--stack-font-size) *1.2);
+    
+  }
+}
+#explanation-text {
+  color: $text-color;
+  font-size: calc(var(--stack-font-size) * 1.3);
+  text-align: center;
+  margin-top: 5%;
+}
+#explanation-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  height: inherit;
 }
 #info-container {
   background-color: $button-color-background;
@@ -131,15 +176,17 @@ body{
   align-content: center;
   justify-content: space-around;
   align-items: center;
+  font-size: calc(var(--stack-font-size) * 1.3);
   #score{
     color: $text-color;
-    // text-align: left;
   }
 }
 #question-container {
   display: flex;
   flex-direction: column;
   align-content: center;
+  height: 100%;
+  justify-content: center;
 }
 #question-navigation-buttons-container {
   display: flex;
@@ -218,6 +265,10 @@ h1 {
   @include question-effect-anime();
   font-size: calc(var(--stack-font-size) * 1.7);
 }
+a {
+  text-decoration: none;
+  color: $text-color;
+}
 ul {
   list-style: none;
   display: flex;
@@ -247,16 +298,16 @@ h6 {
 
 @keyframes correct-answer-effect-anime {
   33% {
-    transform: scale(1.1);
+    transform: scale(1.07);
     color: $text-color-answer;
     filter:drop-shadow(.1em .2em 1em $text-color-matrix);
   }
   66%{
-    transform: scale(1.15);
+    transform: scale(1.08);
     background-color: $correct-answer-color;
   }
   77%{
-    transform: scale(1.19);
+    transform: scale(1.09);
     background-color: $correct-answer-color;
     color: $text-color-answer;
   }
@@ -267,16 +318,16 @@ h6 {
 }
 @keyframes wrong-answer-effect-anime {
   33% {
-    transform: scale(1.1);
+    transform: scale(1.07);
     filter:drop-shadow(.1em .2em 1em $text-color-matrix);
     color: $text-color-answer;
   }
   66%{
-    transform: scale(1.15);
+    transform: scale(1.08);
     background-color: $wrong-answer-color;
   }
   77%{
-    transform: scale(1.19);
+    transform: scale(1.09);
     background-color: $wrong-answer-color;
     color: $text-color-answer;
   }
