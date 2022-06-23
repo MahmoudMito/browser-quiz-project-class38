@@ -5,16 +5,19 @@ import {
   NEXT_QUESTION_BUTTON_ID,
   SCORE_ID,
   USER_INTERFACE_ID,
+  RESULT_BUTTON,
+  NUMBER_OF_ANSWERED_QUESTIONS,
 } from '../constants.js';
 import { createQuestionElement } from '../views/questionView.js';
 import { createAnswerElement } from '../views/answerView.js';
 import { quizData } from '../data.js';
 import { resultsOfQuestions } from '../data.js';
 import { theScore } from '../data.js';
+import { checkAnswer } from './answers.js';
+import { resultButton } from './buttons.js';
 
 export const initQuestionPage = () => {
-
-  resultsOfQuestions.push([quizData.currentQuestionIndex+1, 'unchecked']);
+  resultsOfQuestions.push([quizData.currentQuestionIndex + 1, 'unchecked']);
   console.log(resultsOfQuestions);
 
   const userInterface = document.getElementById(USER_INTERFACE_ID);
@@ -33,53 +36,36 @@ export const initQuestionPage = () => {
     answersListElement.appendChild(answerElement);
   }
 
-// Added:
+  // Added:
 
-Array.from(answersListElement.children).forEach((answer) => {
-  answer.addEventListener('click', checkAnswer)
-  
-});
+  Array.from(answersListElement.children).forEach((answer) => {
+    answer.addEventListener('click', () => {
+      checkAnswer(answer, () => {
+        nextQuestion();
+      });
+    });
+  });
 
-function checkAnswer(){
-
-   const selectedAnswer = quizData.questions[quizData.currentQuestionIndex].selected ;
-   const theCorrectAnswer = quizData.questions[quizData.currentQuestionIndex].correct;
-
-   if ( selectedAnswer === null){
-
-    const theUserAnswer = this.innerText.split('')[0];
-    quizData.questions[quizData.currentQuestionIndex].selected = theUserAnswer;
-
-    if ( theUserAnswer === theCorrectAnswer){
-      resultsOfQuestions[quizData.currentQuestionIndex] = [quizData.currentQuestionIndex+1, 'correct'];
-
-      const scoreElement = document.getElementById(SCORE_ID);
-      theScore[0]++;
-      scoreElement.innerHTML = `Your score is: ${theScore}`;
-
-   } else {
-    resultsOfQuestions[quizData.currentQuestionIndex] = [quizData.currentQuestionIndex+1, 'incorrect'];
-  }
-
-   console.log(resultsOfQuestions);
-}
-}
-
-
-// finished adding.
+  // finished adding.
 
   document
     .getElementById(NEXT_QUESTION_BUTTON_ID)
     .addEventListener('click', nextQuestion);
 };
 
-
-
 const nextQuestion = () => {
   quizData.currentQuestionIndex = quizData.currentQuestionIndex + 1;
-
-  initQuestionPage();
-
-  document.getElementsByTagName('title')[0].textContent =
-  `The Frontiers Question-${quizData.currentQuestionIndex+1}`;
+  console.log(quizData.currentQuestionIndex);
+  if (quizData.currentQuestionIndex >= quizData.questions.length - 1) {
+    resultButton();
+  } else {
+    initQuestionPage();
+  }
+  document.getElementsByTagName(
+    'title'
+  )[0].textContent = `The Frontiers Question-${
+    quizData.currentQuestionIndex + 1
+  }`;
+  document.getElementById(NUMBER_OF_ANSWERED_QUESTIONS).textContent =
+    quizData.currentQuestionIndex;
 };

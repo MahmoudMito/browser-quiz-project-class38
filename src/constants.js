@@ -13,3 +13,4 @@ export const ANSWERS_LIST_ID = 'answers-list';
 export const NEXT_QUESTION_BUTTON_ID = 'next-question-button';
 export const SCORE_ID = 'score';
 export const NUMBER_OF_ANSWERED_QUESTIONS = 'answered-questions';
+export const RESULT_BUTTON = 'result-button';
