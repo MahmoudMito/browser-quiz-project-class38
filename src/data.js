@@ -317,7 +317,7 @@ export const quizData = {
       ],
     },
     {
-      text: 'JQ1- What is JavaScript?',
+      text: 'What is JavaScript?',
       answers: {
         a: 'JavaScript is a scripting language used to make the website interactive',
         b: 'JavaScript is an assembly language used to make the website interactive',
@@ -433,7 +433,7 @@ export const quizData = {
       ],
     },
     {
-      text: 'JQ9- Which of the following is the property that is triggered in response to JS errors?',
+      text: 'Which of the following is the property that is triggered in response to JS errors?',
       answers: {
         a: 'onclick',
         b: 'onerror',
