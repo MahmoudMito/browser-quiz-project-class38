@@ -10,7 +10,7 @@ export const createHintView = (explanationText)=>{
     element.innerHTML = String.raw `
         <p id=${EXPLANATION_TEXT_ID}>${explanationText}</p>
         <div id=${EXTERNAL_LINKS_ID}></div>
-        <button id=${POPUP_CLOSE_BUTTON_ID}>Thanks! 😊</button>
+        <button id=${POPUP_CLOSE_BUTTON_ID}>Thanks<br>( ˘︹˘ )</button>
 
     `;
     

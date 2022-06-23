@@ -31,7 +31,8 @@ export const initQuestionPage = () => {
 
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
 
-  const questionElement = createQuestionElement(currentQuestion.text,userScore());
+  const questionElement = createQuestionElement(currentQuestion.text,userScore(),
+  quizData.currentQuestionIndex === quizData.questions.length -1);
 
   userInterface.appendChild(questionElement);
   questionElement.children[INFO_CONTAINER].
@@ -49,7 +50,10 @@ export const initQuestionPage = () => {
   }
   
   displayButtonElement(GIVEUP_QUESTION_BUTTON_ID,true,nextQuestion);
-  displayButtonElement(NEXT_QUESTION_BUTTON_ID,false,initQuestionPage);
+  displayButtonElement(NEXT_QUESTION_BUTTON_ID,false,()=>{
+    quizData.currentHintIndex = quizData.currentQuestionIndex;
+    initQuestionPage();
+  });
   setTime(true);
   
   
@@ -67,12 +71,13 @@ const nextQuestion = (selectedAnswer = null,selectedAnswerElement = null) => {
   removeAnswersListeners();
   setTime(false);
   displayButtonElement(GIVEUP_QUESTION_BUTTON_ID,false);
+
   checkCorrectAnswer(selectedAnswerElement,()=>{
     displayButtonElement(NEXT_QUESTION_BUTTON_ID,true);
     setTime(true);
   });
   quizData.currentQuestionIndex += 1;
-
+  quizData.currentHintIndex = quizData.currentQuestionIndex -1;
 };
 
 const removeAnswersListeners = ()=>{

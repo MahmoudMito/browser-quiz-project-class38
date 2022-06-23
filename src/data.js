@@ -25,6 +25,7 @@ export const userScore = (increase = false,reset = false)=>{
 }
 
 export const quizData = {
+  currentHintIndex:0,
   currentQuestionIndex: 0,
   // the questions in the quiz
   questions: [
@@ -43,6 +44,42 @@ export const quizData = {
       links: [
         {
           text: 'Some hint!1',
+          href: 'https://www.examlple.com',
+        },
+      ],
+    },
+    {
+      text: 'What does `typeof` do?',
+      answers: {
+        a: 'changes the type of a primitive value',
+        b: 'returns a string describing the type of a value',
+        c: 'determines if a value is primitive',
+        d: 'can tell the difference between arrays and objects',
+      },
+      correct: 'b',
+      selected: null,
+      explanation:'const is not the same as letconst is not the same as letconst is not the same as let',
+      links: [
+        {
+          text: 'Somehint!!!2',
+          href: 'https://www.examlple.com',
+        },
+      ],
+    },
+    {
+      text: 'What does `typeof` do?',
+      answers: {
+        a: 'changes the type of a primitive value',
+        b: 'returns a string describing the type of a value',
+        c: 'determines if a value is primitive',
+        d: 'can tell the difference between arrays and objects',
+      },
+      correct: 'b',
+      selected: null,
+      explanation:'const is not the same as letconst is not the same as letconst is not the same as let',
+      links: [
+        {
+          text: 'Somehint!!!2',
           href: 'https://www.examlple.com',
         },
       ],

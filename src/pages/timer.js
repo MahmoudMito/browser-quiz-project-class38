@@ -19,9 +19,9 @@ export const setTime = (start)=> {
   }
 }
 
-export const getTimerElement = ()=>{
+export const getTimerElement = (label =false)=>{
     if (!timerElement){
-        timerElement = createTimerElement();
+        timerElement = createTimerElement(label);
     }
     return timerElement;
 }
