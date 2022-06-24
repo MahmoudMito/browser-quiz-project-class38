@@ -6,7 +6,7 @@ import { ANSWERS_LIST_ID , EXPLANATION_BUTTON_ID,
   SCORE_ID,
   QUESTION_NAVIGATION_BUTTON_CONTAINER_ID,
   INFO_CONTAINER,
-  TIMER_ID,
+  RESTART_BUTTON_ID,
 } from '../constants.js';
 
 
@@ -14,7 +14,7 @@ import { ANSWERS_LIST_ID , EXPLANATION_BUTTON_ID,
  * Create a full question element
  * @returns {Element}
  */
-export const createQuestionElement = (question,score,resultButton) => {
+export const createQuestionElement = (question,score,resultButton,time) => {
   const element = document.createElement('div');
   element.id = QUESTION_CONTAINER_ID;
   // I use String.raw just to get fancy colors for the HTML in VS Code.
@@ -23,6 +23,10 @@ export const createQuestionElement = (question,score,resultButton) => {
       <div>
         <p>Score: <span id=${SCORE_ID}>${score}</span></p>
       </div>
+      <div>
+            ${time.innerHTML}
+      </div>
+      <button id=${RESTART_BUTTON_ID}>Restart</button>
     </div>
     <h1>${question}</h1>
 

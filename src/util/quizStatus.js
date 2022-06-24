@@ -1,0 +1,15 @@
+'use strict';
+
+import { quizData } from "../data.js";
+import { initWelcomePage } from "../pages/welcomePage.js";
+import { saveLocalUserData } from "./localStorage.js";
+
+export const restartQuiz = ()=>{
+    quizData.currentHintIndex =0;
+    quizData.currentQuestionIndex=0;
+    quizData.questions.forEach(question=>{
+        question.selected=null;
+    });
+    saveLocalUserData();
+    initWelcomePage();
+}

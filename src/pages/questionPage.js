@@ -7,6 +7,7 @@ import {
   NEXT_QUESTION_BUTTON_ID,
   INFO_CONTAINER,
   EXPLANATION_BUTTON_ID,
+  RESTART_BUTTON_ID,
 } from '../constants.js';
 import { createQuestionElement } from '../views/questionView.js';
 import { createAnswerElement } from '../views/answerView.js';
@@ -17,6 +18,7 @@ import {displayButtonElement} from './button.js';
 import { getTimerElement, setTime } from './timer.js';
 import { initHintPage, setHintPage } from './hintPage.js';
 import { saveLocalUserData } from '../util/localStorage.js';
+import { restartQuiz } from '../util/quizStatus.js';
 
 let answersEventListeners = [];
 
@@ -33,11 +35,12 @@ export const initQuestionPage = () => {
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
 
   const questionElement = createQuestionElement(currentQuestion.text,userScore(),
-  quizData.currentQuestionIndex === quizData.questions.length -1);
+  quizData.currentQuestionIndex === quizData.questions.length -1,
+  getTimerElement());
 
   userInterface.appendChild(questionElement);
-  questionElement.children[INFO_CONTAINER].
-  appendChild(document.createElement('div').appendChild(getTimerElement()));
+  // questionElement.children[INFO_CONTAINER].
+  // appendChild(document.createElement('div').appendChild(getTimerElement()));
 
   const answersListElement = document.getElementById(ANSWERS_LIST_ID);
 
@@ -63,7 +66,7 @@ export const initQuestionPage = () => {
       initHintPage();
       setHintPage(true);
     });
-  
+    document.getElementById(RESTART_BUTTON_ID).addEventListener('click',restartQuiz);
 };
 
 
