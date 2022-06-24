@@ -6,6 +6,7 @@ import { initQuestionPage } from './questionPage.js';
 import {setButtonActive} from './button.js';
 import { setTime } from './timer.js';
 import { setHintPage } from './hintPage.js';
+import { loadLocalUserData } from '../util/localStorage.js';
 
 export const initWelcomePage = () => {
   const userInterface = document.getElementById(USER_INTERFACE_ID);
@@ -26,6 +27,7 @@ export const initWelcomePage = () => {
 };
 
 const startQuiz = () => {
+  loadLocalUserData();
   initQuestionPage();
   setTime(true);
 };

@@ -44,6 +44,7 @@ export const EXPLANATION_TEXT_ID = 'explanation-text';
 export const POPUP_CONTAINER_ID = 'popup-container';
 export const POPUP_BACKGROUND_COLOR = '--popup-background-color';
 export const POPUP_CLOSE_BUTTON_ID = 'popup-close-button';
+export const STORAGE_KEY = 'quizData';
 export const ALPHANUMERIC_MATRIX = {
   LETTERS_UPPERCASE: [
     'A',
