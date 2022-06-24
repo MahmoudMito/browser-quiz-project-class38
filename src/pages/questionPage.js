@@ -16,6 +16,7 @@ import {initResultPage} from './resultPage.js';
 import {displayButtonElement} from './button.js';
 import { getTimerElement, setTime } from './timer.js';
 import { initHintPage, setHintPage } from './hintPage.js';
+import { saveLocalUserData } from '../util/localStorage.js';
 
 let answersEventListeners = [];
 
@@ -75,6 +76,7 @@ const nextQuestion = (selectedAnswer = null,selectedAnswerElement = null) => {
   checkCorrectAnswer(selectedAnswerElement,()=>{
     displayButtonElement(NEXT_QUESTION_BUTTON_ID,true);
     setTime(true);
+    saveLocalUserData();
   });
   quizData.currentQuestionIndex += 1;
   quizData.currentHintIndex = quizData.currentQuestionIndex -1;

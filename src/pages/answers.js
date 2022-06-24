@@ -24,23 +24,17 @@ export const checkCorrectAnswer = (selectedAnswerElement,passFunction)=>{
     selectedAnswerElement.style.backgroundColor = `var(${WRONG_ANSWER_COLOR_CSS_VAR})`;
     indicateCorrectAnswer(selectedAnswerElement);
   }
-    selectedAnswerElement.style.animationDuration = '3s';
-    selectedAnswerElement.style.animationDirection = 'normal';
-    selectedAnswerElement.style.animationIterationCount = '1';
-    selectedAnswerElement.style.animationTimingFunction = 'ease-in';
+    setElementAnimationProperties(selectedAnswerElement);
     selectedAnswerElement.addEventListener('animationend',passFunction);
 };
 
 const indicateCorrectAnswer = (selectedAnswerElement = null,passFunction = null)=>{
-    for (let answerElement of selectedAnswerElement? 
+    for (const answerElement of selectedAnswerElement? 
       selectedAnswerElement.parentElement.children :
       document.getElementById(ANSWERS_LIST_ID).children){
       if(answerElement.innerText.split(':')[0] === quizData.questions[quizData.currentQuestionIndex].correct){
         answerElement.style.animation = CORRECT_ANSWER_LIST_INDICATION;
-        answerElement.style.animationDuration = '3s';
-        answerElement.style.animationDirection = 'normal';
-        answerElement.style.animationIterationCount = '1';
-        answerElement.style.animationTimingFunction = 'ease-in';
+        setElementAnimationProperties(answerElement);
         answerElement.style.backgroundColor = `var(${CORRECT_ANSWER_COLOR_CSS_VAR})`;
         if(passFunction){
           answerElement.addEventListener('animationend', passFunction);
@@ -50,3 +44,9 @@ const indicateCorrectAnswer = (selectedAnswerElement = null,passFunction = null)
     }
   }
 
+const setElementAnimationProperties = (element)=>{
+  element.style.animationDuration = '3s';
+  element.style.animationDirection = 'normal';
+  element.style.animationIterationCount = '1';
+  element.style.animationTimingFunction = 'ease-in';
+}

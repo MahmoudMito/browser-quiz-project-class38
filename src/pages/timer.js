@@ -1,3 +1,5 @@
+'use strict';
+
 import { createTimerElement } from "../views/timerViews.js";
 
 let totalSeconds = 0;
@@ -8,10 +10,8 @@ export const setTime = (start)=> {
   if (start) {
     if (timerIntervalId){
         clearInterval(timerIntervalId);
-        timerIntervalId = setInterval(increaseTimer, 1000);
-    }else {
-        timerIntervalId = setInterval(increaseTimer, 1000);
     }
+    timerIntervalId = setInterval(increaseTimer, 1000);
     getTimerElement();
   } else if (timerIntervalId) {
     clearInterval(timerIntervalId);
@@ -19,9 +19,9 @@ export const setTime = (start)=> {
   }
 }
 
-export const getTimerElement = (label =false)=>{
+export const getTimerElement = ()=>{
     if (!timerElement){
-        timerElement = createTimerElement(label);
+        timerElement = createTimerElement();
     }
     return timerElement;
 }
