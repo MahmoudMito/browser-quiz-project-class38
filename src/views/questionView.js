@@ -1,5 +1,11 @@
 'use strict';
 
+                            <<<<<<< amer-sezgin
+                            import { RESULT_BUTTON } from '../constants.js';
+                            import { theScore } from '../data.js';
+                            import { NUMBER_OF_ANSWERED_QUESTIONS } from '../constants.js';
+                            import { quizData } from '../data.js';
+                            =======
 import { ANSWERS_LIST_ID , EXPLANATION_BUTTON_ID, 
   GIVEUP_QUESTION_BUTTON_ID,QUESTION_CONTAINER_ID,
   NEXT_QUESTION_BUTTON_ID,
@@ -9,6 +15,7 @@ import { ANSWERS_LIST_ID , EXPLANATION_BUTTON_ID,
   RESTART_BUTTON_ID,
 } from '../constants.js';
 
+// >>>>>>> merge-v2
 
 /**
  * Create a full question element
@@ -19,6 +26,14 @@ export const createQuestionElement = (question,score,resultButton,time) => {
   element.id = QUESTION_CONTAINER_ID;
   // I use String.raw just to get fancy colors for the HTML in VS Code.
   element.innerHTML = String.raw`
+//                                   <<<<<<< amer-sezgin
+
+                                    <p>Question number:<span id=${NUMBER_OF_ANSWERED_QUESTIONS}></span></p>
+
+                                    <p id="${SCORE_ID}">Your score is: ${theScore[0]}</p>
+
+
+//                                   =======
     <div id=${INFO_CONTAINER}>
       <div>
         <p>Score: <span id=${SCORE_ID}>${score}</span></p>
@@ -29,6 +44,7 @@ export const createQuestionElement = (question,score,resultButton,time) => {
       <button id=${RESTART_BUTTON_ID}>Restart</button>
     </div>
     <h1>${question}</h1>
+///// >>>>>>> merge-v2
 
     <ul id="${ANSWERS_LIST_ID}">
     </ul>
