@@ -18,5 +18,9 @@
   "homepage": "https://github.com/HackYourFuture/browser-quiz-project-starter",
   "devDependencies": {
     "prettier": "^2.2.1"
+  },
+  "dependencies": {
+    "sass": "^1.52.3",
+    "uuid": "^8.3.2"
   }
 }

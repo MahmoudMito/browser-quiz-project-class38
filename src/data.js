@@ -13,7 +13,21 @@
 export const resultsOfQuestions = [];
 export const theScore = [0];
 
+let totalScore = 0;
+
+export const userScore = (increase = false,reset = false)=>{
+  
+  if (increase){
+    totalScore++;
+  }
+  if (reset){
+    totalScore =0;
+  }
+  return totalScore;
+}
+
 export const quizData = {
+  currentHintIndex:0,
   currentQuestionIndex: 0,
   // the questions in the quiz
   questions: [
@@ -324,6 +338,7 @@ export const quizData = {
     // },
 
     {
+
       text:
         'Which of the following can be used to call a JavaScript Code Snippet?',
       answers: {
@@ -362,11 +377,21 @@ export const quizData = {
         {
           text: 'Javascript',
           href: 'https://www.sanfoundry.com/1000-javascript-questions-answers/',
+      // this explanation 200char max will pop up as an alarm in the browser
+      explanation:'const is not the same as letconst is not the same as letconst is not the same as let',
+      // Links reference for the hint or explanation
+      links: [
+        {
+          text: 'Some hint!1',
+          href: 'https://www.examlple.com',
         },
       ],
     },
+    
     {
+
       text: 'Which of the following is not an error in JavaScript?',
+
       answers: {
         a: 'Missing of Bracket',
         b: 'Division by zero',
@@ -375,6 +400,7 @@ export const quizData = {
       },
       correct: 'b',
       selected: null,
+
       explanation:
         'In JavaScript, division by zero does not result in an error; it just returns infinity or negative infinity. However, because zero divided by zero has no well-defined value, the result of this operation is the unusual not-a-number value, which is written as NaN.',
 
