@@ -1,6 +1,7 @@
 'use strict';
 
 import { INFO_CONTAINER, 
+    RESTART_BUTTON_ID, 
     RESULT_CONTAINER_ID ,
     SCROLLABLE_CLASS} from "../constants.js";
 import { parseHTML } from "../util/htmlParser.js";
@@ -35,6 +36,7 @@ export const CreateResultPage = (
         <div>
             ${time.innerHTML}
         </div>
+        <button id=${RESTART_BUTTON_ID}>Restart</button>
     </div>
     `;
 

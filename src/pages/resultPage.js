@@ -1,10 +1,12 @@
 'use strict';
 
 import { CORRECT_ANSWER_COLOR_CSS_VAR,
+    RESTART_BUTTON_ID,
     USER_INTERFACE_ID, 
     WRONG_ANSWER_COLOR_CSS_VAR } from "../constants.js";
 import { quizData, userScore } from "../data.js";
 import { parseHTML } from "../util/htmlParser.js";
+import { restartQuiz } from "../util/quizStatus.js";
 import { createAnswerElement } from "../views/answerView.js";
 import { CreateResultPage } from "../views/resultView.js";
 import { getTimerElement } from "./timer.js";
@@ -46,5 +48,7 @@ export const initResultPage = ()=>{
         resultElement.appendChild(resultList);
     });
     userInterface.appendChild(resultElement);
+
+    document.getElementById(RESTART_BUTTON_ID).addEventListener('click',restartQuiz);
 
 }
