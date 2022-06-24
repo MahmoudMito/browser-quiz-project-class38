@@ -4,6 +4,9 @@ import { SCORE_ID } from '../constants.js';
 import { quizData, resultsOfQuestions, theScore } from '../data.js';
 
 export const checkAnswer = (selectedAnswerElement, passFunction) => {
+  if (quizData.currentQuestionIndex >= quizData.questions.length + 1) {
+    return;
+  }
   const selectedAnswer =
     quizData.questions[quizData.currentQuestionIndex].selected;
   const theCorrectAnswer =

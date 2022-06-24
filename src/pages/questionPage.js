@@ -12,7 +12,6 @@ import { createQuestionElement } from '../views/questionView.js';
 import { createAnswerElement } from '../views/answerView.js';
 import { quizData } from '../data.js';
 import { resultsOfQuestions } from '../data.js';
-import { theScore } from '../data.js';
 import { checkAnswer } from './answers.js';
 import { resultButton } from './buttons.js';
 
@@ -37,20 +36,18 @@ export const initQuestionPage = () => {
   }
 
   // Added:
-
+  changeTitleAndQuestionNumber();
   Array.from(answersListElement.children).forEach((answer) => {
     answer.addEventListener('click', () => {
       checkAnswer(answer, () => {
-        nextQuestion();
+        document
+          .getElementById(NEXT_QUESTION_BUTTON_ID)
+          .addEventListener('click', nextQuestion);
       });
     });
   });
 
   // finished adding.
-
-  document
-    .getElementById(NEXT_QUESTION_BUTTON_ID)
-    .addEventListener('click', nextQuestion);
 };
 
 const nextQuestion = () => {
@@ -58,14 +55,19 @@ const nextQuestion = () => {
   console.log(quizData.currentQuestionIndex);
   if (quizData.currentQuestionIndex >= quizData.questions.length - 1) {
     resultButton();
+    console.log('no more');
   } else {
     initQuestionPage();
   }
+  changeTitleAndQuestionNumber();
+};
+
+const changeTitleAndQuestionNumber = () => {
+  document.getElementById(NUMBER_OF_ANSWERED_QUESTIONS).textContent =
+    quizData.currentQuestionIndex + 1;
   document.getElementsByTagName(
     'title'
   )[0].textContent = `The Frontiers Question-${
     quizData.currentQuestionIndex + 1
   }`;
-  document.getElementById(NUMBER_OF_ANSWERED_QUESTIONS).textContent =
-    quizData.currentQuestionIndex;
 };
