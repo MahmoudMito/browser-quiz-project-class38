@@ -9,8 +9,6 @@ import { ANSWERS_LIST_ID , EXPLANATION_BUTTON_ID,
   RESTART_BUTTON_ID,
 } from '../constants.js';
 
-// >>>>>>> merge-v2
-
 /**
  * Create a full question element
  * @returns {Element}
