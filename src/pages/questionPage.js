@@ -8,7 +8,6 @@ import {
   EXPLANATION_BUTTON_ID,
   RESTART_BUTTON_ID,
 } from '../constants.js';
-import { resultsOfQuestions } from '../data.js';
 import { createQuestionElement } from '../views/questionView.js';
 import { createAnswerElement } from '../views/answerView.js';
 import { quizData, userScore } from '../data.js';
@@ -25,14 +24,12 @@ let answersEventListeners = [];
 
 export const initQuestionPage = () => {
 
-      resultsOfQuestions.push([quizData.currentQuestionIndex + 1, 'unchecked']);
-
   answersEventListeners = [];
   if (quizData.currentQuestionIndex> quizData.questions.length -1){
     initResultPage();
     return;
   }
-///// >>>>>>> merge-v2
+
   const userInterface = document.getElementById(USER_INTERFACE_ID);
   userInterface.innerHTML = '';
 
@@ -40,11 +37,9 @@ export const initQuestionPage = () => {
 
   const questionElement = createQuestionElement(currentQuestion.text,userScore(),
   quizData.currentQuestionIndex === quizData.questions.length -1,
-  getTimerElement());
+  getTimerElement(),quizData.currentHintIndex +1);
 
   userInterface.appendChild(questionElement);
-  // questionElement.children[INFO_CONTAINER].
-  // appendChild(document.createElement('div').appendChild(getTimerElement()));
 
   const answersListElement = document.getElementById(ANSWERS_LIST_ID);
 
@@ -64,7 +59,6 @@ export const initQuestionPage = () => {
   });
   setTime(true);
   
-  
   document.getElementById(EXPLANATION_BUTTON_ID).addEventListener('click',
     ()=>{
       initHintPage();
@@ -75,41 +69,12 @@ export const initQuestionPage = () => {
     changeTitle();
 };
 
-
-////////<<<<<<< amer-sezgin
-                      // Added:
-                      // changeTitleAndQuestionNumber();
-                      // Array.from(answersListElement.children).forEach((answer) => {
-                      //   answer.addEventListener('click', () => {
-                      //     checkAnswer(answer, () => {
-                      //       document
-                      //         .getElementById(NEXT_QUESTION_BUTTON_ID)
-                      //         .addEventListener('click', nextQuestion);
-                      //     });
-                      //   });
-                      // });
-
-                      // finished adding.
-                    
-
-                    // const nextQuestion = () => {
-                    //   quizData.currentQuestionIndex = quizData.currentQuestionIndex + 1;
-                    //   console.log(quizData.currentQuestionIndex);
-                    //   if (quizData.currentQuestionIndex >= quizData.questions.length - 1) {
-                    //     resultButton();
-                    //     console.log('no more');
-                    //   } else {
-                    //     initQuestionPage();
-                    //   }
-                    //   changeTitleAndQuestionNumber();
-                    // };
-
 const changeTitle = () => {
   document.getElementsByTagName('title')[0].textContent = 
   `The Frontiers Question-${
     quizData.currentQuestionIndex + 1}`;
 }
-                    ////////=======
+
 const nextQuestion = (selectedAnswer = null,selectedAnswerElement = null) => {
   quizData.questions[quizData.currentQuestionIndex].selected = selectedAnswer;
   removeAnswersListeners();
@@ -132,6 +97,5 @@ const removeAnswersListeners = ()=>{
       index++;
     }
 
-//////>>>>>>> merge-v2
 };
 
