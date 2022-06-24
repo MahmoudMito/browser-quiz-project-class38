@@ -2,27 +2,13 @@
 
 import {
   ANSWERS_LIST_ID,
-                          /////<<<<<<< amer-sezgin
-                            SCORE_ID,
-                            RESULT_BUTTON,
-                            NUMBER_OF_ANSWERED_QUESTIONS,
-                          } from '../constants.js';
-                          import { resultsOfQuestions } from '../data.js';
-                          import { checkAnswer } from './answers.js';
-                          // import { resultButton } from './buttons.js';
-
-                          export const initQuestionPage = () => {
-                            resultsOfQuestions.push([quizData.currentQuestionIndex + 1, 'unchecked']);
-                            console.log(resultsOfQuestions);
-
-                          /////=======
   GIVEUP_QUESTION_BUTTON_ID,
   USER_INTERFACE_ID,
   NEXT_QUESTION_BUTTON_ID,
-  INFO_CONTAINER,
   EXPLANATION_BUTTON_ID,
   RESTART_BUTTON_ID,
 } from '../constants.js';
+import { resultsOfQuestions } from '../data.js';
 import { createQuestionElement } from '../views/questionView.js';
 import { createAnswerElement } from '../views/answerView.js';
 import { quizData, userScore } from '../data.js';
@@ -38,6 +24,9 @@ let answersEventListeners = [];
 
 
 export const initQuestionPage = () => {
+
+      resultsOfQuestions.push([quizData.currentQuestionIndex + 1, 'unchecked']);
+
   answersEventListeners = [];
   if (quizData.currentQuestionIndex> quizData.questions.length -1){
     initResultPage();
@@ -82,45 +71,44 @@ export const initQuestionPage = () => {
       setHintPage(true);
     });
     document.getElementById(RESTART_BUTTON_ID).addEventListener('click',restartQuiz);
+  
+    changeTitle();
 };
 
 
 ////////<<<<<<< amer-sezgin
                       // Added:
-                      changeTitleAndQuestionNumber();
-                      Array.from(answersListElement.children).forEach((answer) => {
-                        answer.addEventListener('click', () => {
-                          checkAnswer(answer, () => {
-                            document
-                              .getElementById(NEXT_QUESTION_BUTTON_ID)
-                              .addEventListener('click', nextQuestion);
-                          });
-                        });
-                      });
+                      // changeTitleAndQuestionNumber();
+                      // Array.from(answersListElement.children).forEach((answer) => {
+                      //   answer.addEventListener('click', () => {
+                      //     checkAnswer(answer, () => {
+                      //       document
+                      //         .getElementById(NEXT_QUESTION_BUTTON_ID)
+                      //         .addEventListener('click', nextQuestion);
+                      //     });
+                      //   });
+                      // });
 
                       // finished adding.
-                    };
+                    
 
-                    const nextQuestion = () => {
-                      quizData.currentQuestionIndex = quizData.currentQuestionIndex + 1;
-                      console.log(quizData.currentQuestionIndex);
-                      if (quizData.currentQuestionIndex >= quizData.questions.length - 1) {
-                        resultButton();
-                        console.log('no more');
-                      } else {
-                        initQuestionPage();
-                      }
-                      changeTitleAndQuestionNumber();
-                    };
+                    // const nextQuestion = () => {
+                    //   quizData.currentQuestionIndex = quizData.currentQuestionIndex + 1;
+                    //   console.log(quizData.currentQuestionIndex);
+                    //   if (quizData.currentQuestionIndex >= quizData.questions.length - 1) {
+                    //     resultButton();
+                    //     console.log('no more');
+                    //   } else {
+                    //     initQuestionPage();
+                    //   }
+                    //   changeTitleAndQuestionNumber();
+                    // };
 
-                    const changeTitleAndQuestionNumber = () => {
-                      document.getElementById(NUMBER_OF_ANSWERED_QUESTIONS).textContent =
-                        quizData.currentQuestionIndex + 1;
-                      document.getElementsByTagName(
-                        'title'
-                      )[0].textContent = `The Frontiers Question-${
-                        quizData.currentQuestionIndex + 1
-                      }`;
+const changeTitle = () => {
+  document.getElementsByTagName('title')[0].textContent = 
+  `The Frontiers Question-${
+    quizData.currentQuestionIndex + 1}`;
+}
                     ////////=======
 const nextQuestion = (selectedAnswer = null,selectedAnswerElement = null) => {
   quizData.questions[quizData.currentQuestionIndex].selected = selectedAnswer;

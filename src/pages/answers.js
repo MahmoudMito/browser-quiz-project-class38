@@ -1,41 +1,41 @@
 ///////////<<<<<<< amer-sezgin
 'use strict';
 
-import { resultsOfQuestions, theScore } from '../data.js';
+  import { resultsOfQuestions, theScore } from '../data.js';
 
-export const checkAnswer = (selectedAnswerElement, passFunction) => {
-  if (quizData.currentQuestionIndex >= quizData.questions.length + 1) {
-    return;
-  }
-  const selectedAnswer =
-    quizData.questions[quizData.currentQuestionIndex].selected;
-  const theCorrectAnswer =
-    quizData.questions[quizData.currentQuestionIndex].correct;
-
-  if (selectedAnswer === null) {
-    const theUserAnswer = selectedAnswerElement.innerText.split('')[0];
-
-    quizData.questions[quizData.currentQuestionIndex].selected = theUserAnswer;
-
-    if (theUserAnswer === theCorrectAnswer) {
-      resultsOfQuestions[quizData.currentQuestionIndex] = [
-        quizData.currentQuestionIndex + 1,
-        'correct',
-      ];
-
-      const scoreElement = document.getElementById(SCORE_ID);
-      theScore[0]++;
-      scoreElement.innerHTML = `Your score is: ${theScore}`;
-    } else {
-      resultsOfQuestions[quizData.currentQuestionIndex] = [
-        quizData.currentQuestionIndex + 1,
-        'incorrect',
-      ];
+  export const checkAnswer = (selectedAnswerElement, passFunction) => {
+    if (quizData.currentQuestionIndex >= quizData.questions.length + 1) {
+      return;
     }
-    passFunction();
-    console.log(resultsOfQuestions);
-  }
-};
+    const selectedAnswer =
+      quizData.questions[quizData.currentQuestionIndex].selected;
+    const theCorrectAnswer =
+      quizData.questions[quizData.currentQuestionIndex].correct;
+
+    if (selectedAnswer === null) {
+      const theUserAnswer = selectedAnswerElement.innerText.split('')[0];
+
+      quizData.questions[quizData.currentQuestionIndex].selected = theUserAnswer;
+
+      if (theUserAnswer === theCorrectAnswer) {
+        resultsOfQuestions[quizData.currentQuestionIndex] = [
+          quizData.currentQuestionIndex + 1,
+          'correct',
+        ];
+
+        const scoreElement = document.getElementById(SCORE_ID);
+        theScore[0]++;
+        scoreElement.innerHTML = `Your score is: ${theScore}`;
+      } else {
+        resultsOfQuestions[quizData.currentQuestionIndex] = [
+          quizData.currentQuestionIndex + 1,
+          'incorrect',
+        ];
+      }
+      passFunction();
+      console.log(resultsOfQuestions);
+    }
+  };
 /////////////////////////// =======
 import {
     CORRECT_ANSWER_LIST_ANIMATION,

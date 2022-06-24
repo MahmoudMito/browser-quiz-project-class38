@@ -336,58 +336,50 @@ export const quizData = {
     //     },
     //   ],
     // },
+    // {
 
-    {
+    //   text:
+    //     'Which of the following can be used to call a JavaScript Code Snippet?',
+    //   answers: {
+    //     a: 'Function/Method',
+    //     b: 'Preprocessor',
+    //     c: 'Triggering Event',
+    //     d: 'RMI',
+    //   },
+    //   correct: 'a',
+    //   selected: null,
+    //   explanation:
+    //     'A function call to the element on which JavaScript is to be run can be used to invoke JavaScript code. Other techniques include onclick, onload, and onsubmit, among others.',
 
-      text:
-        'Which of the following can be used to call a JavaScript Code Snippet?',
-      answers: {
-        a: 'Function/Method',
-        b: 'Preprocessor',
-        c: 'Triggering Event',
-        d: 'RMI',
-      },
-      correct: 'a',
-      selected: null,
-      explanation:
-        'A function call to the element on which JavaScript is to be run can be used to invoke JavaScript code. Other techniques include onclick, onload, and onsubmit, among others.',
+    //   links: [
+    //     {
+    //       text: 'Javascript',
+    //       href: 'https://www.sanfoundry.com/1000-javascript-questions-answers/',
+    //     },
+    //   ],
+    // },
+    // {
+    //   text: 'Why event handlers is needed in JS?',
+    //   answers: {
+    //     a: 'Allows JavaScript code to alter the behaviour of windows',
+    //     b: 'Adds innerHTML page to the code',
+    //     c: 'Change the server location',
+    //     d: 'Performs handling of exceptions and occurrences',
+    //   },
+    //   correct: 'a',
+    //   selected: null,
+    //   explanation:
+    //     'JS code can change the behavior of windows, documents, and the elements that make up those documents via event handlers.',
 
-      links: [
-        {
-          text: 'Javascript',
-          href: 'https://www.sanfoundry.com/1000-javascript-questions-answers/',
-        },
-      ],
-    },
-
-    {
-      text: 'Why event handlers is needed in JS?',
-      answers: {
-        a: 'Allows JavaScript code to alter the behaviour of windows',
-        b: 'Adds innerHTML page to the code',
-        c: 'Change the server location',
-        d: 'Performs handling of exceptions and occurrences',
-      },
-      correct: 'a',
-      selected: null,
-      explanation:
-        'JS code can change the behavior of windows, documents, and the elements that make up those documents via event handlers.',
-
-      links: [
-        {
-          text: 'Javascript',
-          href: 'https://www.sanfoundry.com/1000-javascript-questions-answers/',
-      // this explanation 200char max will pop up as an alarm in the browser
-      explanation:'const is not the same as letconst is not the same as letconst is not the same as let',
-      // Links reference for the hint or explanation
-      links: [
-        {
-          text: 'Some hint!1',
-          href: 'https://www.examlple.com',
-        },
-      ],
-    },
-    
+    //   links: [
+    //     {
+    //       text: 'Javascript',
+    //       href: 'https://www.sanfoundry.com/1000-javascript-questions-answers/',
+    //   explanation:'const is not the same as letconst is not the same as letconst is not the same as let',
+      
+    //     }
+    //   ],
+    // },
     {
 
       text: 'Which of the following is not an error in JavaScript?',
@@ -432,5 +424,6 @@ export const quizData = {
         },
       ],
     },
+
   ],
 };
