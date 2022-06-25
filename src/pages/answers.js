@@ -1,3 +1,5 @@
+'use strict';
+
 import {
     CORRECT_ANSWER_LIST_ANIMATION,
     WRONG_ANSWER_LIST_ANIMATION,
@@ -7,7 +9,8 @@ import {
     WRONG_ANSWER_COLOR_CSS_VAR,
     SCORE_ID,
   } from '../constants.js';
-import { quizData, userScore } from '../data.js';
+import { quizData } from '../data.js';
+import { userScore } from '../user/userScore.js';
 
 
 export const checkCorrectAnswer = (selectedAnswerElement,passFunction)=>{

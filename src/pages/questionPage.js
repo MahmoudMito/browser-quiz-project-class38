@@ -5,13 +5,15 @@ import {
   GIVEUP_QUESTION_BUTTON_ID,
   USER_INTERFACE_ID,
   NEXT_QUESTION_BUTTON_ID,
-  INFO_CONTAINER,
   EXPLANATION_BUTTON_ID,
   RESTART_BUTTON_ID,
+  TIMER_ID,
+  INFO_CONTAINER,
+  SCORE_ID,
 } from '../constants.js';
 import { createQuestionElement } from '../views/questionView.js';
 import { createAnswerElement } from '../views/answerView.js';
-import { quizData, userScore } from '../data.js';
+import { quizData } from '../data.js';
 import {checkCorrectAnswer} from '../pages/answers.js';
 import {initResultPage} from './resultPage.js';
 import {displayButtonElement} from './button.js';
@@ -19,28 +21,28 @@ import { getTimerElement, setTime } from './timer.js';
 import { initHintPage, setHintPage } from './hintPage.js';
 import { saveLocalUserData } from '../util/localStorage.js';
 import { restartQuiz } from '../util/quizStatus.js';
+import { userScore } from '../user/userScore.js';
 
 let answersEventListeners = [];
 
 
 export const initQuestionPage = () => {
+
   answersEventListeners = [];
   if (quizData.currentQuestionIndex> quizData.questions.length -1){
     initResultPage();
     return;
   }
+
   const userInterface = document.getElementById(USER_INTERFACE_ID);
   userInterface.innerHTML = '';
 
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
 
-  const questionElement = createQuestionElement(currentQuestion.text,userScore(),
-  quizData.currentQuestionIndex === quizData.questions.length -1,
-  getTimerElement());
-
+  const questionElement = createQuestionElement(currentQuestion.text,
+  quizData.currentQuestionIndex === quizData.questions.length -1,quizData.currentHintIndex +1);
+  questionElement.children[INFO_CONTAINER].children[TIMER_ID].appendChild(getTimerElement());
   userInterface.appendChild(questionElement);
-  // questionElement.children[INFO_CONTAINER].
-  // appendChild(document.createElement('div').appendChild(getTimerElement()));
 
   const answersListElement = document.getElementById(ANSWERS_LIST_ID);
 
@@ -60,15 +62,20 @@ export const initQuestionPage = () => {
   });
   setTime(true);
   
-  
   document.getElementById(EXPLANATION_BUTTON_ID).addEventListener('click',
     ()=>{
       initHintPage();
       setHintPage(true);
     });
     document.getElementById(RESTART_BUTTON_ID).addEventListener('click',restartQuiz);
+    document.getElementById(SCORE_ID).textContent = userScore();
+    changeTitle();
 };
 
+const changeTitle = () => {
+  document.getElementsByTagName('title')[0].textContent = 
+  `The Frontiers Question-${quizData.currentQuestionIndex + 1}`;
+}
 
 const nextQuestion = (selectedAnswer = null,selectedAnswerElement = null) => {
   quizData.questions[quizData.currentQuestionIndex].selected = selectedAnswer;
@@ -79,7 +86,7 @@ const nextQuestion = (selectedAnswer = null,selectedAnswerElement = null) => {
   checkCorrectAnswer(selectedAnswerElement,()=>{
     displayButtonElement(NEXT_QUESTION_BUTTON_ID,true);
     setTime(true);
-    saveLocalUserData();
+    saveLocalUserData(quizData,userScore());
   });
   quizData.currentQuestionIndex += 1;
   quizData.currentHintIndex = quizData.currentQuestionIndex -1;

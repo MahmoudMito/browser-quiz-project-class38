@@ -7,6 +7,8 @@ import {setButtonActive} from './button.js';
 import { setTime } from './timer.js';
 import { setHintPage } from './hintPage.js';
 import { loadLocalUserData } from '../util/localStorage.js';
+import { quizData } from '../data.js';
+import { setUserScore } from '../user/userScore.js';
 
 export const initWelcomePage = () => {
   const userInterface = document.getElementById(USER_INTERFACE_ID);
@@ -17,9 +19,7 @@ export const initWelcomePage = () => {
   const welcomeElement = createWelcomeElement();
   userInterface.appendChild(welcomeElement);
   
-
-  document
-    .getElementById(START_QUIZ_BUTTON_ID)
+  document.getElementById(START_QUIZ_BUTTON_ID)
     .addEventListener('click', ()=>{
       // setButtonActive(START_QUIZ_BUTTON_ID,startQuiz);
       startQuiz();
@@ -27,7 +27,10 @@ export const initWelcomePage = () => {
 };
 
 const startQuiz = () => {
-  loadLocalUserData();
+  loadLocalUserData(quizData, (score)=>{
+    setUserScore(score);
+  });
+  
   initQuestionPage();
   setTime(true);
 };

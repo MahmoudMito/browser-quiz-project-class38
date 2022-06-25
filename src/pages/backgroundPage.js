@@ -4,7 +4,9 @@ import {STACK_FONT_SIZE_CSS_VAR, BACKGROUND_UNDERLAY_ID,
 import { createBackgroundPage } from "../views/backgroundView.js";
 
 let intervalId =0;
-
+/**
+ * initiating matrix background
+ */
 export const initBackgroundPage = ()=>{
     const currentTextSize = window.getComputedStyle(document.querySelector(':root'))
     .getPropertyValue(STACK_FONT_SIZE_CSS_VAR).trim().replace('px','');

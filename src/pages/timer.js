@@ -1,5 +1,7 @@
 'use strict';
 
+
+import { loadLocalUserTime, saveLocalUserTime } from "../util/localStorage.js";
 import { createTimerElement } from "../views/timerViews.js";
 
 let totalSeconds = 0;
@@ -17,6 +19,7 @@ export const setTime = (start)=> {
     clearInterval(timerIntervalId);
     timerIntervalId = 0;
   }
+  totalSeconds = loadLocalUserTime();
 }
 
 export const getTimerElement = ()=>{
@@ -30,6 +33,7 @@ const increaseTimer = ()=> {
     ++totalSeconds;
     timerElement.children[2].textContent = pad(totalSeconds % 60);
     timerElement.children[0].textContent = pad(parseInt(totalSeconds / 60));
+    saveLocalUserTime(totalSeconds);
 }
 
 export const clearTimer = () => {

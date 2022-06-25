@@ -1,12 +1,9 @@
-
-import { TIMER_ID } from '../constants.js';
 'use strict';
 
 export const createTimerElement = ()=>{
-
+  
   let element = document.createElement('label');
   element.textContent = 'Time: '
-  element.id = TIMER_ID;
 
   let seconds = document.createElement('span');
   seconds.textContent = '00';

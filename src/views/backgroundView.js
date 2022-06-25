@@ -1,7 +1,11 @@
 'use strict';
 import { ALPHANUMERIC_MATRIX, BACKGROUND_MATRIX_ID, 
     BACKGROUND_SPAN_MATRIX_ID_OFFSET} from '../constants.js';
-
+/**
+ * create an array of spans matrix
+ * @param {Array} NumberOfSpans 
+ * @returns {Array}
+ */
 export const createBackgroundPage = (NumberOfSpans)=>{
     const getRandomLetter = (NumberOfLetters = 1)=> {
         let data = [];
