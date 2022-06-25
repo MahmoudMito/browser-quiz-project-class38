@@ -150,6 +150,7 @@ body {
   justify-content: space-evenly;
   align-items: center;
   height: inherit;
+  margin: 0.5em;
 }
 
 #info-container {
