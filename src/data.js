@@ -298,7 +298,7 @@ export const quizData = {
         c: 'JavaScript is a function that is enclosed with the object to its inner function scope',
         d: 'None of the mentioned',
       },
-      correct: 'B',
+      correct: 'b',
       selected: null,
       explanation:'A closure is a function that is enclosed with references to its lexical environment. A closure allows an inner function to access the scope of an outside function. Closures are formed every time a function is created in JavaScript, during function creation time.',
 

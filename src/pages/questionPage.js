@@ -23,11 +23,11 @@ import { saveLocalUserData } from '../util/localStorage.js';
 import { restartQuiz } from '../util/quizRestart.js';
 import { userScore } from '../user/userScore.js';
 
-let answersEventListeners = [];
 
+let answersEventListeners = [];
 /**
- * 
- * @returns initiating question page with all related functions like event listeners, timer and related buttons elements
+ * initiating question page with all related functions like event listeners, timer and related buttons elements
+ * @returns 
  */
 export const initQuestionPage = () => {
 
@@ -103,6 +103,9 @@ const nextQuestion = (selectedAnswer = null,selectedAnswerElement = null) => {
   quizData.currentHintIndex = quizData.currentQuestionIndex -1;
 };
 
+/**
+ * remove listener from answers elements to prevent user click once the answer is selected or give up the question
+ */
 const removeAnswersListeners = ()=>{
   let index =0;
     for(const answer of document.getElementById(ANSWERS_LIST_ID).children){

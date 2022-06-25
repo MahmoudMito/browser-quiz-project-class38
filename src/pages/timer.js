@@ -1,6 +1,5 @@
 'use strict';
 
-
 import { loadLocalUserTime, saveLocalUserTime } from "../util/localStorage.js";
 import { createTimerElement } from "../views/timerViews.js";
 
@@ -38,7 +37,9 @@ export const getTimerElement = ()=>{
 }
 
 /**
- * increase time by one second and updating element, call saveLocalUserTime to save the current quiz time on localStorage, this function's invoked by setInterval,
+ * increase time by one second and updating element, 
+ * and call saveLocalUserTime to save the current quiz time on localStorage, 
+ * this function is invoked by setInterval
  */
 const increaseTimer = ()=> {
     ++totalSeconds;
