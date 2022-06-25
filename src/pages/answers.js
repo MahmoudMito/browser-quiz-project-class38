@@ -21,13 +21,16 @@ import { userScore } from '../user/userScore.js';
 export const checkCorrectAnswer = (selectedAnswerElement,passFunction)=>{
   if (quizData.questions[quizData.currentQuestionIndex].selected ===
     quizData.questions[quizData.currentQuestionIndex].correct){
+      //  user select the correct answer element
       selectedAnswerElement.style.animation = CORRECT_ANSWER_LIST_ANIMATION;
       selectedAnswerElement.style.backgroundColor = `var(${CORRECT_ANSWER_COLOR_CSS_VAR})`;
       document.getElementById(SCORE_ID).textContent = userScore(true);
   } else if(!selectedAnswerElement) {
+    //  the user didn't select the answer element and pressed 'giveup button'
     indicateCorrectAnswer(null,passFunction);
     return;
   } else {
+    //  the selected answer element is wrong so we assign wrong style
     selectedAnswerElement.style.animation = WRONG_ANSWER_LIST_ANIMATION;
     selectedAnswerElement.style.backgroundColor = `var(${WRONG_ANSWER_COLOR_CSS_VAR})`;
     indicateCorrectAnswer(selectedAnswerElement);

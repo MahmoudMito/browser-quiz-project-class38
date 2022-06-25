@@ -103,6 +103,9 @@ const nextQuestion = (selectedAnswer = null,selectedAnswerElement = null) => {
   quizData.currentHintIndex = quizData.currentQuestionIndex -1;
 };
 
+/**
+ * remove answers elements listener to prevent user click once the answer is selected or give up the question
+ */
 const removeAnswersListeners = ()=>{
   let index =0;
     for(const answer of document.getElementById(ANSWERS_LIST_ID).children){

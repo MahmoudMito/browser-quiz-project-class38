@@ -25,7 +25,7 @@ export const initResultPage = ()=>{
         quizData.questions.length,
         getTimerElement()
     );
-    
+    document.getElementsByTagName('title')[0].textContent = 'Quiz Result';
     quizData.questions.forEach(question=>{
         const resultList = document.createElement('ul');
         resultList.textContent = 
