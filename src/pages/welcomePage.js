@@ -19,9 +19,7 @@ export const initWelcomePage = () => {
   const welcomeElement = createWelcomeElement();
   userInterface.appendChild(welcomeElement);
   
-
-  document
-    .getElementById(START_QUIZ_BUTTON_ID)
+  document.getElementById(START_QUIZ_BUTTON_ID)
     .addEventListener('click', ()=>{
       // setButtonActive(START_QUIZ_BUTTON_ID,startQuiz);
       startQuiz();
@@ -31,7 +29,6 @@ export const initWelcomePage = () => {
 const startQuiz = () => {
   loadLocalUserData(quizData, (score)=>{
     setUserScore(score);
-    console.log(score);
   });
   
   initQuestionPage();

@@ -27,10 +27,6 @@ export const ACCENT_COLOR_CSS_VAR = '--accent-color';
 export const TIMER_ID = 'timer';
 export const EXPLANATION_BUTTON_ID = 'explanation-question-button';
 export const NEXT_QUESTION_BUTTON_ID = 'next-question-button';
-
-export const NUMBER_OF_ANSWERED_QUESTIONS = 'answered-questions';
-export const RESULT_BUTTON = 'result-button';
-
 export const QUESTION_CONTAINER_ID = 'question-container';
 export const QUESTION_NAVIGATION_BUTTON_CONTAINER_ID = 'question-navigation-buttons-container';
 export const RESULT_CONTAINER_ID = 'result-container';
@@ -51,6 +47,7 @@ export const POPUP_CLOSE_BUTTON_ID = 'popup-close-button';
 export const STORAGE_KEY = 'quizData';
 export const STORAGE_KEY_TIME = 'quizTime';
 export const RESTART_BUTTON_ID = 'restart-button';
+export const WELCOME_CONTAINER_ID = 'welcome-container';
 export const ALPHANUMERIC_MATRIX = {
   LETTERS_UPPERCASE: [
     'A',
