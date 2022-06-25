@@ -115,7 +115,7 @@ body{
   z-index: $index;
   position: $position;
   height: 100%;
-  width: $stack-width;
+  width: calc($stack-width * 1.01);
   margin: 0;
 }
 .centered {
@@ -126,6 +126,7 @@ body{
   color: $text-color;
   animation: fadeIn-effect-anime 1s 1;
   overflow-y: auto;
+  transform: translateX(-1%);
 }
 #popup-container {
   position: fixed;
@@ -278,7 +279,7 @@ span[id^='background-span-matrix-']{
 }
 h1 {
   @include question-effect-anime();
-  font-size: calc(var(--stack-font-size) * 1.7);
+  font-size: calc(var(--stack-font-size) * 1.67);
 }
 a {
   text-decoration: none;
