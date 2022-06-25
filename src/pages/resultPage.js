@@ -12,7 +12,7 @@ import { CreateResultPage } from "../views/resultView.js";
 import { getTimerElement } from "./timer.js";
 
 /**
- * initialize result page
+ * initialize result page with related styling for user correct answers
  */
 export const initResultPage = ()=>{
     const userInterface = document.getElementById(USER_INTERFACE_ID);

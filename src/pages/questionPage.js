@@ -25,7 +25,10 @@ import { userScore } from '../user/userScore.js';
 
 let answersEventListeners = [];
 
-
+/**
+ * 
+ * @returns initiating question page with all related functions like event listeners, timer and related buttons elements
+ */
 export const initQuestionPage = () => {
 
   answersEventListeners = [];
@@ -40,7 +43,7 @@ export const initQuestionPage = () => {
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
 
   const questionElement = createQuestionElement(currentQuestion.text,
-  quizData.currentQuestionIndex === quizData.questions.length -1,quizData.currentHintIndex +1);
+  quizData.currentQuestionIndex === quizData.questions.length -1,quizData.currentQuestionIndex +1);
   questionElement.children[INFO_CONTAINER].children[TIMER_ID].appendChild(getTimerElement());
   userInterface.appendChild(questionElement);
 
@@ -72,11 +75,19 @@ export const initQuestionPage = () => {
     changeTitle();
 };
 
+/**
+ * changing page title based on the current question number
+ */
 const changeTitle = () => {
   document.getElementsByTagName('title')[0].textContent = 
   `The Frontiers Question-${quizData.currentQuestionIndex + 1}`;
 }
 
+/**
+ * manage the selected answer element, timer and passing the answer element to check the correct answer
+ * @param {String} selectedAnswer 
+ * @param {Element} selectedAnswerElement 
+ */
 const nextQuestion = (selectedAnswer = null,selectedAnswerElement = null) => {
   quizData.questions[quizData.currentQuestionIndex].selected = selectedAnswer;
   removeAnswersListeners();

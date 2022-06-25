@@ -7,19 +7,23 @@ import { createLinksElement } from "../views/linksView.js";
 
 let cancelButtonEventListener = null;
 
-export const initHintPage = (questionIndex=null)=>{
+/**
+ * initialize a popup page as hint for the user based on the current question index
+ * @param {Number} questionIndex 
+ */
+export const initHintPage = ()=>{
     
     const popupContainer = document.getElementById(POPUP_CONTAINER_ID);
     popupContainer.innerHTML = '';
     popupContainer.style.display = 'none';
 
     const hintPageElement = createHintView(
-        quizData.questions[questionIndex? questionIndex : quizData.currentHintIndex].explanation);
+        quizData.questions[quizData.currentHintIndex].explanation);
 
     popupContainer.appendChild(hintPageElement);
 
     const linksElement = createLinksElement(
-        quizData.questions[questionIndex? questionIndex : quizData.currentHintIndex].links);
+        quizData.questions[quizData.currentHintIndex].links);
     
     document.getElementById(EXTERNAL_LINKS_ID).appendChild(linksElement);
     refreshEventListener();

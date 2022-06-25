@@ -8,6 +8,7 @@ import { ANSWERS_LIST_ID , EXPLANATION_BUTTON_ID,
   INFO_CONTAINER,
   RESTART_BUTTON_ID,
   TIMER_ID,
+  SCROLLABLE_CLASS,
 } from '../constants.js';
 
 /**
@@ -17,6 +18,7 @@ import { ANSWERS_LIST_ID , EXPLANATION_BUTTON_ID,
 export const createQuestionElement = (question,resultButton,answeredQuestions) => {
   const element = document.createElement('div');
   element.id = QUESTION_CONTAINER_ID;
+  // element.className =  SCROLLABLE_CLASS;
   // I use String.raw just to get fancy colors for the HTML in VS Code.
   element.innerHTML = String.raw`
     <div id=${INFO_CONTAINER}>
