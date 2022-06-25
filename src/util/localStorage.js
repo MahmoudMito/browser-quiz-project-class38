@@ -9,7 +9,7 @@ import { setUserScore } from "../user/userScore.js";
  */
 
 export const saveLocalUserData = (data,score)=>{
-    
+
     localStorage.setItem(STORAGE_KEY,JSON.stringify(
         [
             data.currentHintIndex,
@@ -20,8 +20,9 @@ export const saveLocalUserData = (data,score)=>{
 }
 
 /**
- * load data from browser's local storage
+ * load data and score from browser's local storage
  * @param {quizData}
+ * @param {Number}
  */
 export const loadLocalUserData = (data,score)=>{
     
@@ -32,10 +33,11 @@ export const loadLocalUserData = (data,score)=>{
         
     data.currentHintIndex = savedData[0];
     data.currentQuestionIndex = savedData[1] -1;
-    data.questions.forEach((_,index)=>{
-        data.selected= savedData[2][index];
+    data.questions.forEach((question,index)=>{
+        question.selected = savedData[2][index];
     });
-    score = savedData[3];
+    score(savedData[3]);
+    console.log(`loaded score${savedData[3]}`)
 }
 
 /**
@@ -49,6 +51,7 @@ const savedTime = localStorage.getItem(STORAGE_KEY_TIME);
     }
     return parseInt(savedTime);
 }
+
 /**
  * save user time to the browser
  * @param {Number} seconds 
@@ -56,6 +59,7 @@ const savedTime = localStorage.getItem(STORAGE_KEY_TIME);
 export const saveLocalUserTime =(seconds)=>{
     localStorage.setItem(STORAGE_KEY_TIME,`${seconds}`);
 }
+
 /**
  * clear stored user's data and time from the browser
  */

@@ -29,9 +29,11 @@ export const initWelcomePage = () => {
 };
 
 const startQuiz = () => {
-  let score=0;
-  loadLocalUserData(quizData, score);
-  setUserScore(score);
+  loadLocalUserData(quizData, (score)=>{
+    setUserScore(score);
+    console.log(score);
+  });
+  
   initQuestionPage();
   setTime(true);
 };

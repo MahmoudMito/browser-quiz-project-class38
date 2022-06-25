@@ -8,13 +8,9 @@ import { userData } from "../data.js";
  * @param {boolean} reset 
  * @returns 
  */
-export const userScore = (increase = false,reset = false)=>{
-  
+export const userScore = (increase = false)=>{
     if (increase){
       userData.totalScore++;
-    }
-    if (reset){
-      userData.totalScore =0;
     }
     return userData.totalScore;
 }
@@ -25,9 +21,6 @@ export const userScore = (increase = false,reset = false)=>{
  * @returns 
  */
 export const setUserScore = (score)=>{
-  if (!score){
-    return;
-  }
   userData.totalScore = score;
 }
 
