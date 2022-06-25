@@ -11,19 +11,13 @@
     not by your listeners
 */
 
-let totalScore = 0;
-
-export const userScore = (increase = false,reset = false)=>{
-  
-  if (increase){
-    totalScore++;
-  }
-  if (reset){
-    totalScore =0;
-  }
-  return totalScore;
+/**
+ *  user Data obj
+    totalScore:   the user accumulated
+ */
+export const userData = {
+  totalScore:0,
 }
-
 export const quizData = {
   currentHintIndex:0,
   currentQuestionIndex: 0,

@@ -7,10 +7,12 @@ import {
   NEXT_QUESTION_BUTTON_ID,
   EXPLANATION_BUTTON_ID,
   RESTART_BUTTON_ID,
+  TIMER_ID,
+  INFO_CONTAINER,
 } from '../constants.js';
 import { createQuestionElement } from '../views/questionView.js';
 import { createAnswerElement } from '../views/answerView.js';
-import { quizData, userScore } from '../data.js';
+import { quizData } from '../data.js';
 import {checkCorrectAnswer} from '../pages/answers.js';
 import {initResultPage} from './resultPage.js';
 import {displayButtonElement} from './button.js';
@@ -18,6 +20,7 @@ import { getTimerElement, setTime } from './timer.js';
 import { initHintPage, setHintPage } from './hintPage.js';
 import { saveLocalUserData } from '../util/localStorage.js';
 import { restartQuiz } from '../util/quizStatus.js';
+import { userScore } from '../user/userScore.js';
 
 let answersEventListeners = [];
 
@@ -36,9 +39,8 @@ export const initQuestionPage = () => {
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
 
   const questionElement = createQuestionElement(currentQuestion.text,userScore(),
-  quizData.currentQuestionIndex === quizData.questions.length -1,
-  getTimerElement(),quizData.currentHintIndex +1);
-
+  quizData.currentQuestionIndex === quizData.questions.length -1,quizData.currentHintIndex +1);
+  questionElement.children[INFO_CONTAINER].children[TIMER_ID].appendChild(getTimerElement());
   userInterface.appendChild(questionElement);
 
   const answersListElement = document.getElementById(ANSWERS_LIST_ID);
@@ -71,8 +73,7 @@ export const initQuestionPage = () => {
 
 const changeTitle = () => {
   document.getElementsByTagName('title')[0].textContent = 
-  `The Frontiers Question-${
-    quizData.currentQuestionIndex + 1}`;
+  `The Frontiers Question-${quizData.currentQuestionIndex + 1}`;
 }
 
 const nextQuestion = (selectedAnswer = null,selectedAnswerElement = null) => {
@@ -84,7 +85,7 @@ const nextQuestion = (selectedAnswer = null,selectedAnswerElement = null) => {
   checkCorrectAnswer(selectedAnswerElement,()=>{
     displayButtonElement(NEXT_QUESTION_BUTTON_ID,true);
     setTime(true);
-    saveLocalUserData();
+    saveLocalUserData(quizData);
   });
   quizData.currentQuestionIndex += 1;
   quizData.currentHintIndex = quizData.currentQuestionIndex -1;
