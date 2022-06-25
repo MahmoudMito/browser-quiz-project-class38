@@ -6,7 +6,7 @@ import { CORRECT_ANSWER_COLOR_CSS_VAR,
     WRONG_ANSWER_COLOR_CSS_VAR } from "../constants.js";
 import { quizData, userData } from "../data.js";
 import { parseHTML } from "../util/htmlParser.js";
-import { restartQuiz } from "../util/quizStatus.js";
+import { restartQuiz } from "../util/quizRestart.js";
 import { createAnswerElement } from "../views/answerView.js";
 import { CreateResultPage } from "../views/resultView.js";
 import { getTimerElement } from "./timer.js";

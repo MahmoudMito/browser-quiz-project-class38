@@ -20,7 +20,7 @@ import {displayButtonElement} from './button.js';
 import { getTimerElement, setTime } from './timer.js';
 import { initHintPage, setHintPage } from './hintPage.js';
 import { saveLocalUserData } from '../util/localStorage.js';
-import { restartQuiz } from '../util/quizStatus.js';
+import { restartQuiz } from '../util/quizRestart.js';
 import { userScore } from '../user/userScore.js';
 
 let answersEventListeners = [];
