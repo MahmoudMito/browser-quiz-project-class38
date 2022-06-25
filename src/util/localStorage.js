@@ -1,19 +1,21 @@
 'use strict';
 import { STORAGE_KEY, STORAGE_KEY_TIME } from "../constants.js";
 import { quizData } from "../data.js";
+import { setUserScore } from "../user/userScore.js";
 
 /**
  * save the data to browser's local storage
  * @param {quizData} data 
  */
 
-export const saveLocalUserData = (data)=>{
+export const saveLocalUserData = (data,score)=>{
     
     localStorage.setItem(STORAGE_KEY,JSON.stringify(
         [
             data.currentHintIndex,
             data.currentQuestionIndex,
-            data.questions.map(question=>question.selected)
+            data.questions.map(question=>question.selected),
+            score,
         ]));
 }
 
@@ -21,21 +23,21 @@ export const saveLocalUserData = (data)=>{
  * load data from browser's local storage
  * @param {quizData}
  */
-export const loadLocalUserData = (data)=>{
+export const loadLocalUserData = (data,score)=>{
     
     const savedData = JSON.parse(localStorage.getItem(STORAGE_KEY));
     if (!savedData){
         return;
     }
-        console.log(savedData);
-        data.currentHintIndex = savedData[0];
-        data.currentQuestionIndex = savedData[1];
-        data.questions.forEach((_,index)=>{
+        
+    data.currentHintIndex = savedData[0];
+    data.currentQuestionIndex = savedData[1] -1;
+    data.questions.forEach((_,index)=>{
         data.selected= savedData[2][index];
     });
-    
-    
+    score = savedData[3];
 }
+
 /**
  * load user time from the browser
  * @returns {Number}
@@ -45,7 +47,6 @@ const savedTime = localStorage.getItem(STORAGE_KEY_TIME);
     if (!savedTime){
         return 0;
     }
-    console.log(savedTime);
     return parseInt(savedTime);
 }
 /**

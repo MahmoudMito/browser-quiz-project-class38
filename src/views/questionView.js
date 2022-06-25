@@ -14,7 +14,7 @@ import { ANSWERS_LIST_ID , EXPLANATION_BUTTON_ID,
  * Create a full question element
  * @returns {Element}
  */
-export const createQuestionElement = (question,score,resultButton,answeredQuestions) => {
+export const createQuestionElement = (question,resultButton,answeredQuestions) => {
   const element = document.createElement('div');
   element.id = QUESTION_CONTAINER_ID;
   // I use String.raw just to get fancy colors for the HTML in VS Code.
@@ -22,7 +22,7 @@ export const createQuestionElement = (question,score,resultButton,answeredQuesti
     <div id=${INFO_CONTAINER}>
       <div>
         <p>Question number: ${answeredQuestions}</p>
-        <p>Your score is: <span id=${SCORE_ID}>${score}</span></p>
+        <p>Your score is: <span id=${SCORE_ID}></span></p>
       </div>
       <div id=${TIMER_ID}>
       </div>

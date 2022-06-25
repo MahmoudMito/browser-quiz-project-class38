@@ -9,6 +9,7 @@ import {
   RESTART_BUTTON_ID,
   TIMER_ID,
   INFO_CONTAINER,
+  SCORE_ID,
 } from '../constants.js';
 import { createQuestionElement } from '../views/questionView.js';
 import { createAnswerElement } from '../views/answerView.js';
@@ -38,7 +39,7 @@ export const initQuestionPage = () => {
 
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
 
-  const questionElement = createQuestionElement(currentQuestion.text,userScore(),
+  const questionElement = createQuestionElement(currentQuestion.text,
   quizData.currentQuestionIndex === quizData.questions.length -1,quizData.currentHintIndex +1);
   questionElement.children[INFO_CONTAINER].children[TIMER_ID].appendChild(getTimerElement());
   userInterface.appendChild(questionElement);
@@ -67,7 +68,7 @@ export const initQuestionPage = () => {
       setHintPage(true);
     });
     document.getElementById(RESTART_BUTTON_ID).addEventListener('click',restartQuiz);
-  
+    document.getElementById(SCORE_ID).textContent = userScore();
     changeTitle();
 };
 
@@ -85,7 +86,7 @@ const nextQuestion = (selectedAnswer = null,selectedAnswerElement = null) => {
   checkCorrectAnswer(selectedAnswerElement,()=>{
     displayButtonElement(NEXT_QUESTION_BUTTON_ID,true);
     setTime(true);
-    saveLocalUserData(quizData);
+    saveLocalUserData(quizData,userScore());
   });
   quizData.currentQuestionIndex += 1;
   quizData.currentHintIndex = quizData.currentQuestionIndex -1;

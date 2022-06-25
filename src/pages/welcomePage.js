@@ -8,6 +8,7 @@ import { setTime } from './timer.js';
 import { setHintPage } from './hintPage.js';
 import { loadLocalUserData } from '../util/localStorage.js';
 import { quizData } from '../data.js';
+import { setUserScore } from '../user/userScore.js';
 
 export const initWelcomePage = () => {
   const userInterface = document.getElementById(USER_INTERFACE_ID);
@@ -28,7 +29,9 @@ export const initWelcomePage = () => {
 };
 
 const startQuiz = () => {
-  loadLocalUserData(quizData);
+  let score=0;
+  loadLocalUserData(quizData, score);
+  setUserScore(score);
   initQuestionPage();
   setTime(true);
 };

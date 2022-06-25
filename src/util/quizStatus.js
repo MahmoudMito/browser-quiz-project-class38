@@ -1,6 +1,7 @@
 'use strict';
 
 import { quizData } from "../data.js";
+import { setTime } from "../pages/timer.js";
 import { initWelcomePage } from "../pages/welcomePage.js";
 import { clearLocalUserDataTime, saveLocalUserData } from "./localStorage.js";
 
@@ -15,4 +16,5 @@ export const restartQuiz = ()=>{
         question.selected=null;
     });
     initWelcomePage();
+    setTime(false);
 }
