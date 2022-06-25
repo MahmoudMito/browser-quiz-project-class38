@@ -13,6 +13,7 @@ export const startQuiz = () => {
     loadLocalUserData(quizData, (score)=>{
       setUserScore(score);
     });
+    quizData.currentHintIndex = quizData.currentQuestionIndex;
     initQuestionPage();
     setTime(true);
   };

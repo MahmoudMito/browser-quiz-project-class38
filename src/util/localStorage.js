@@ -31,8 +31,8 @@ export const loadLocalUserData = (data,score)=>{
         return;
     }
         
-    data.currentHintIndex = savedData[0];
-    data.currentQuestionIndex = savedData[1] -1;
+    data.currentHintIndex = savedData[0]-1;
+    data.currentQuestionIndex = savedData[1];
     data.questions.forEach((question,index)=>{
         question.selected = savedData[2][index];
     });
