@@ -8,6 +8,10 @@ let totalSeconds = 0;
 let timerIntervalId = 0;
 let timerElement = null;
 
+/**
+ * starting/pausing quiz timer and invoking loadLocalUserTime() to recall last user time from LocalStorage
+ * @param {boolean} start 
+ */
 export const setTime = (start)=> {
   if (start) {
     if (timerIntervalId){
@@ -22,6 +26,10 @@ export const setTime = (start)=> {
   totalSeconds = loadLocalUserTime();
 }
 
+/**
+ * return the timer element
+ * @returns {Element}
+ */
 export const getTimerElement = ()=>{
     if (!timerElement){
         timerElement = createTimerElement();
@@ -29,6 +37,9 @@ export const getTimerElement = ()=>{
     return timerElement;
 }
 
+/**
+ * increase time by one second and updating element, call saveLocalUserTime to save the current quiz time on localStorage, this function's invoked by setInterval,
+ */
 const increaseTimer = ()=> {
     ++totalSeconds;
     timerElement.children[2].textContent = pad(totalSeconds % 60);
@@ -36,9 +47,18 @@ const increaseTimer = ()=> {
     saveLocalUserTime(totalSeconds);
 }
 
+/**
+ * resetting timer
+ */
 export const clearTimer = () => {
     totalSeconds =0;
 }
+
+/**
+ * padding a single number with zero to two digits
+ * @param {Number} number 
+ * @returns 
+ */
 const pad = (number)=> {
   let valString = number + '';
   if (valString.length < 2) {

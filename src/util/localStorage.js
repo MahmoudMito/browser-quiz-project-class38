@@ -37,7 +37,6 @@ export const loadLocalUserData = (data,score)=>{
         question.selected = savedData[2][index];
     });
     score(savedData[3]);
-    console.log(`loaded score${savedData[3]}`)
 }
 
 /**

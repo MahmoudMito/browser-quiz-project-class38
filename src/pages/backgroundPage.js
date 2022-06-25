@@ -5,7 +5,7 @@ import { createBackgroundPage } from "../views/backgroundView.js";
 
 let intervalId =0;
 /**
- * initiating matrix background
+ * initiating matrix background with related math to update the matrix
  */
 export const initBackgroundPage = ()=>{
     const currentTextSize = window.getComputedStyle(document.querySelector(':root'))

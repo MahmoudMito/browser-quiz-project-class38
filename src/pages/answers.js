@@ -12,7 +12,12 @@ import {
 import { quizData } from '../data.js';
 import { userScore } from '../user/userScore.js';
 
-
+/**
+ * checking the correct answer from element and passing the passFunction to be invoked at the end of animation
+ * @param {Element} selectedAnswerElement 
+ * @param {Function} passFunction 
+ * @returns 
+ */
 export const checkCorrectAnswer = (selectedAnswerElement,passFunction)=>{
   if (quizData.questions[quizData.currentQuestionIndex].selected ===
     quizData.questions[quizData.currentQuestionIndex].correct){
@@ -31,6 +36,11 @@ export const checkCorrectAnswer = (selectedAnswerElement,passFunction)=>{
     selectedAnswerElement.addEventListener('animationend',passFunction);
 };
 
+/**
+ * indicating the correct answer element and passing the passFunction to be invoked at the end of animation
+ * @param {Element} selectedAnswerElement 
+ * @param {Function} passFunction 
+ */
 const indicateCorrectAnswer = (selectedAnswerElement = null,passFunction = null)=>{
     for (const answerElement of selectedAnswerElement? 
       selectedAnswerElement.parentElement.children :
@@ -47,6 +57,10 @@ const indicateCorrectAnswer = (selectedAnswerElement = null,passFunction = null)
     }
   }
 
+/**
+ * setting animation style for the element
+ * @param {Element} element 
+ */
 const setElementAnimationProperties = (element)=>{
   element.style.animationDuration = '3s';
   element.style.animationDirection = 'normal';
