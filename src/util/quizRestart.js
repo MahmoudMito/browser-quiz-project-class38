@@ -4,7 +4,7 @@ import { quizData } from "../data.js";
 import { setTime } from "../pages/timer.js";
 import { initWelcomePage } from "../pages/welcomePage.js";
 import { setUserScore } from "../user/userScore.js";
-import { clearLocalUserDataTime, saveLocalUserData } from "./localStorage.js";
+import { clearLocalUserDataTime } from "./localStorage.js";
 
 /**
  * restart the quiz with resetting data,time, localStorage 
