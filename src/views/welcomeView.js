@@ -8,6 +8,7 @@ import { START_QUIZ_BUTTON_ID, WELCOME_CONTAINER_ID } from '../constants.js';
  */
 export const createWelcomeElement = () => {
   const element = document.createElement('div');
+  element.id = WELCOME_CONTAINER_ID;
   element.innerHTML = String.raw`
     <h1>Welcome To Frontiers HTML CSS JS Quiz</h1>
     <h6>The Frontiers' Quiz</h6>

@@ -117,7 +117,7 @@ body{
   margin: 0;
 }
 .centered {
-  @include user-interface-props(20,fixed);
+  @include user-interface-props(20,relative);
   left: 0%;
   top: 0%;
   text-align: center;
@@ -181,6 +181,18 @@ body{
     color: $text-color;
   }
 }
+#welcome-container {
+  height: 100%;
+  left: 0%;
+  top:0%;
+  margin-top: 15%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
 #question-container {
   display: flex;
   flex-direction: column;
@@ -210,8 +222,8 @@ body{
   bottom: 0;
   margin: 0;
   left: 0;
-  width: $stack-width;
-  height: $stack-height;
+  width: 100%;
+  height: 100%;
   z-index: $index;
   position: $position;
 }
