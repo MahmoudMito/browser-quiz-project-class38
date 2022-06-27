@@ -11,6 +11,7 @@ import { createAnswerElement } from '../views/answerView.js';
 import { quizData } from '../data.js';
 import { resultsOfQuestions } from '../data.js';
 import { theScore } from '../data.js';
+import { page } from './resultPage.js';
 
 export const initQuestionPage = () => {
   document.getElementsByTagName(
@@ -49,7 +50,7 @@ export const initQuestionPage = () => {
       if (theUserAnswer === theCorrectAnswer) {
         resultsOfQuestions[quizData.currentQuestionIndex] = [
           quizData.currentQuestionIndex + 1,
-          'correct',
+          `Given answer is : ${theUserAnswer}' : correct'`,
         ];
         const scoreElement = document.getElementById(SCORE_ID);
         theScore[0]++;
@@ -57,7 +58,7 @@ export const initQuestionPage = () => {
       } else {
         resultsOfQuestions[quizData.currentQuestionIndex] = [
           quizData.currentQuestionIndex + 1,
-          'incorrect',
+          `Given answer is ${theUserAnswer}' : incorrect' : correct answer is ${theCorrectAnswer}`,
         ];
       }
       console.log(resultsOfQuestions);
@@ -72,13 +73,12 @@ const nextQuestion = () => {
   if (quizData.currentQuestionIndex < quizData.questions.length - 1) {
     quizData.currentQuestionIndex = quizData.currentQuestionIndex + 1;
     initQuestionPage();
+  } else {
     changeButtonName();
   }
 };
-
 const changeButtonName = () => {
-  if (quizData.currentQuestionIndex === 9) {
-    document.getElementById(NEXT_QUESTION_BUTTON_ID).innerHTML =
-      'Show Result Page';
-  }
+  document.getElementById(NEXT_QUESTION_BUTTON_ID).innerHTML =
+    'Show Result Page';
+  page();
 };
