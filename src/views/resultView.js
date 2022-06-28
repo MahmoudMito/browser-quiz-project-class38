@@ -4,10 +4,10 @@
  * Create a full question element
  * @returns {Element}
  */
- export const createPageHeader = () => {
+export const createPageHeader = () => {
   const element = document.createElement('div');
   element.innerHTML = String.raw`
-      <h1>Score Result Report</h1>
+      <h1>Quiz Score Report</h1>
     `;
   return element;
 };

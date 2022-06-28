@@ -81,5 +81,8 @@ const changeButtonName = () => {
     document.getElementById(NEXT_QUESTION_BUTTON_ID).innerHTML =
       'Show Result Page';
     page();
+    document.getElementsByTagName(
+      'title'
+    )[0].textContent = `Quiz Score Report`;
   }
 };
