@@ -1,8 +1,11 @@
 'use strict';
 
 import { USER_INTERFACE_ID, START_QUIZ_BUTTON_ID } from '../constants.js';
+import { quizData } from '../data.js';
+import { getReport } from '../features/theReport.js';
 import { createWelcomeElement } from '../views/welcomeView.js';
 import { initQuestionPage } from './questionPage.js';
+
 
 export const initWelcomePage = () => {
   const userInterface = document.getElementById(USER_INTERFACE_ID);
@@ -17,5 +20,9 @@ export const initWelcomePage = () => {
 };
 
 const startQuiz = () => {
-  initQuestionPage();
+  if (quizData.report === true){
+    getReport();
+  } else {
+    initQuestionPage();
+  }
 };
