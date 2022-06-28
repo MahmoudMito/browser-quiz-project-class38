@@ -70,15 +70,16 @@ export const initQuestionPage = () => {
 };
 
 const nextQuestion = () => {
-  if (quizData.currentQuestionIndex < quizData.questions.length - 1) {
+  if (quizData.currentQuestionIndex <= quizData.questions.length - 1) {
     quizData.currentQuestionIndex = quizData.currentQuestionIndex + 1;
     initQuestionPage();
-  } else {
     changeButtonName();
   }
 };
 const changeButtonName = () => {
-  document.getElementById(NEXT_QUESTION_BUTTON_ID).innerHTML =
-    'Show Result Page';
-  page();
+  if (quizData.currentQuestionIndex === quizData.questions.length - 1) {
+    document.getElementById(NEXT_QUESTION_BUTTON_ID).innerHTML =
+      'Show Result Page';
+    page();
+  }
 };
